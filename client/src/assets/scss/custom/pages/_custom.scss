@@ -1,0 +1,35 @@
+.topnav .navbar-nav .nav-link {
+    font-size: 14px;
+    position: relative;
+    color: #b4cee7;
+    line-height: 70px;
+}
+
+.topnav .navbar-nav .nav-link:focus, .topnav .navbar-nav .nav-link:hover {
+    color: #f7f7f7;
+    background-color: transparent;
+}
+
+.header-item {
+    height: 70px;
+    box-shadow: none !important;
+    color: #b4cee7;
+    border: 0;
+    border-radius: 0px;
+}
+
+.header-item:hover {
+    color: #f7f7f7;
+}
+
+.noti-icon i {
+    font-size: 22px;
+    color: #b4cee7;
+}
+
+.volumetric{
+    position: relative;
+    top:9rem;
+    left:47.4rem;
+    z-index: 999;
+}

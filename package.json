@@ -1,0 +1,25 @@
+{
+  "name": "chayan-logistics",
+  "version": "1.0.0",
+  "description": "This is Logistics Portal",
+  "main": "index.js",
+  "author": "Hasan",
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "concurrently": "^6.2.1",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-validator": "^6.12.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.0.4",
+    "mongoose-sequence": "^5.3.1"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "devn": "nodemon index.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm start\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+  }
+}
