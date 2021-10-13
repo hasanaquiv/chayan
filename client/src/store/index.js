@@ -9,6 +9,10 @@ import trackingReducer from "./reducers/trackingReducer";
 import printReducer from "./reducers/printReducer";
 import profileReducer from "./reducers/profileReducer";
 import adminReducer from "./reducers/adminReducer";
+import billingReducer from "./reducers/billingReducer";
+import paginationReducer from "./reducers/paginationReducer";
+
+
 
 
 
@@ -24,6 +28,8 @@ export default configureStore({
       prints:printReducer,
       profile:profileReducer,
       admin:adminReducer,
+      billings:billingReducer,
+      pagination:paginationReducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
 });

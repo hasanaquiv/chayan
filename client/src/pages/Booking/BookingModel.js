@@ -84,7 +84,7 @@ const BookingModel = ({parentCallback}) => {
         data-toggle="modal"
         data-target=".bs-example-modal-lg"
       >
-        <i className="bx bx-plus font-size-16 align-middle me-0" />
+        <i className="bx bx-plus font-size-16 align-middle me-0" /> 
       </button>
       <Modal
         size="lg"

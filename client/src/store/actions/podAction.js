@@ -10,9 +10,9 @@ const podAction = createAsyncThunk("pod", async (pod) => {
   return data;
 });
 
-const getAllPods = createAsyncThunk("getAllPods", async () => {
+const getAllPods = createAsyncThunk("getAllPods", async (search) => {
   try {
-    const { data } = await axios.get("/api/pod");
+    const { data } = await axios.get(`/api/pod/${search}`);
     return data;
   } catch (error) {
     return error;

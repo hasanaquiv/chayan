@@ -65,7 +65,7 @@ const AddPod = () => {
             <Card>
               <CardBody>
                 <AvForm className="needs-validation" onSubmit={onSubmit}>
-                  {(add==1)?<Row>
+                  {(add===1)?<Row>
                     <Col md="6">
                       <div className="mb-3">
                         <AvField
@@ -145,7 +145,7 @@ const AddPod = () => {
                       </div>
                     </Col>
                   </Row>
-                  :<Col md="6">
+                  :<><Col md="6">
                       <div className="mb-3">
                         <AvField
                           className="form-control"
@@ -165,7 +165,22 @@ const AddPod = () => {
                           </option>
                         </AvField>
                       </div>
-                    </Col>}                  
+                    </Col>
+                    <Col md="6">
+                      <div className="mb-3">
+                        <AvField
+                          name="docketNumber"
+                          placeholder="Docket Number"
+                          type="text"
+                          errorMessage="Enter Docket Number"
+                          className="form-control"
+                          onChange={inputHandle}
+                          value={pod.docketNumber}
+                          validate={{ required: { value: true } }}
+                          id="validationCustom01"
+                        />
+                      </div>
+                    </Col></>}                  
                   <div className="button-items">
                     <Button color="primary" type="submit">
                       {loader ? "Loading..." : "save"}

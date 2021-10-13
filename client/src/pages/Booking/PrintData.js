@@ -1,14 +1,10 @@
-import {
-  Row,
-  Col,
-  Card,
-  CardBody,
-  Button,
-  Alert,
-  Table,
-  CardFooter,
-} from "reactstrap";
-import Logo from "../../assets/images/icon.png";
+import { useState, useEffect } from "react";
+import { Row, Col, Card, CardBody, Button, CardFooter } from "reactstrap";
+import { useSelector, useDispatch } from "react-redux";
+import SweetAlert from "react-bootstrap-sweetalert";
+
+import { printAction } from "../../store/actions/printAction";
+
 const style = {
   borderReact: {
     border: "2px solid #000000",
@@ -29,18 +25,15 @@ const style = {
 const PrintData = (props) => {
   const {
     docketNumber,
+    consigner,
     origin,
     destination,
-    consigner,
-    consignee,
-    billTo,
     actualWeight,
     chargeWeight,
     invoiceNo,
     invoiceAmount,
     waybill,
     paymentMode,
-    pickupBranch,
     remarks,
     handling,
     consignerDetails,
@@ -58,7 +51,40 @@ const PrintData = (props) => {
   const totalGst = (charge * 18) / 100;
   const total = totalGst + charge;
 
-  // console.log(total);
+  const month = new Date().getMonth()
+
+  const data = {
+    id: props.id,
+    docketNumber,
+    consigner,
+    consignerName:consignerDetails.companyName,
+    origin,
+    destination,
+    actualWeight,
+    chargeWeight,
+    freightCharge: tFreight,
+    otherCharge: charge,
+    month,
+    gst:totalGst,
+    total,
+  };
+
+  const dispatch = useDispatch();
+  const { response, loader } = useSelector((state) => state.prints);
+  const [confirm, setConfirm] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [dynamicTitle, setDynamicTitle] = useState("");
+  const [dynamicDescription, setDynamicDescription] = useState("");
+
+  useEffect(() => {
+    if (Object.keys(response).length > 0) {
+      window.print();
+    }
+  }, [response]);
+
+  // console.log(response);
+  // console.log(consignerDetails.customerType)
+
   return (
     <>
       <Card>
@@ -68,18 +94,22 @@ const PrintData = (props) => {
               <Row style={style.borderReactBottom}>
                 <Col sm={6} style={style.borderReactRight}>
                   <Row>
-                  <Col sm={4} className="mt-3">
-                    <img src={require("../../assets/images/icon.png").default} alt="icon" width="120px"/>
-                  </Col>
-                  <Col sm={8}>
-                    <div className="mt-3 mb-3 ml-5">
-                      <h3>Chayan Logistics</h3>
-                      <h6>Chayan Enterprises Pvt. Ltd.</h6>
-                      <h6>Khasra Number 647, A Block</h6>
-                      <h6> Opposite Chaudhary Farm</h6>
-                      <h6>Rangpuri Extension, New Delhi 110037</h6>
-                    </div>
-                  </Col>
+                    <Col sm={4} className="mt-3">
+                      <img
+                        src={require("../../assets/images/icon.png").default}
+                        alt="icon"
+                        width="120px"
+                      />
+                    </Col>
+                    <Col sm={8}>
+                      <div className="mt-3 mb-3 ml-5">
+                        <h3>Chayan Logistics</h3>
+                        <h6>Chayan Enterprises Pvt. Ltd.</h6>
+                        <h6>Khasra Number 647, A Block</h6>
+                        <h6> Opposite Chaudhary Farm</h6>
+                        <h6>Rangpuri Extension, New Delhi 110037</h6>
+                      </div>
+                    </Col>
                   </Row>
                 </Col>
                 <Col sm={6} className="text-center">
@@ -174,9 +204,7 @@ const PrintData = (props) => {
                           <div style={style.borderReactBottom}>
                             {consignerDetails.phone}
                           </div>
-                          <div>
-                            Mumbai
-                          </div>
+                          <div>Mumbai</div>
                         </Col>
                       </Row>
                     </Col>
@@ -214,32 +242,40 @@ const PrintData = (props) => {
                   Destination : {destination}
                 </Col>
                 <Col sm={12}>
-                  <Row>
-                    <Col sm={6} style={style.borderReactRight}>
-                      <div>Charges</div>
-                      <div>Freight({consignerDetails.freightCharge}/kg)</div>
-                      <div>Docket</div>
-                      <div>FOV</div>
-                      <div>ODA</div>
-                      <div>Fuel</div>
-                      <div>To Pay</div>
-                      <div>GST(18%)</div>
-                      <div style={style.borderReactTop}>Total</div>
-                    </Col>
-                    <Col sm={6}>
-                      <div>Amount</div>
-                      <div>{tFreight}.00</div>
-                      <div>{consignerDetails.docketCharges}.00</div>
-                      <div>{consignerDetails.fovCharges}.00</div>
-                      <div>{consignerDetails.odaCharges}.00</div>
-                      <div>{consignerDetails.fuelCharges}.00</div>
-                      <div>{consignerDetails.toPayCharges}.00</div>
-                      <div>{totalGst}%</div>
-                      <div style={style.borderReactTop}>
-                        <strong>{total}</strong>
-                      </div>
-                    </Col>
-                  </Row>
+                  {consignerDetails.customerType !== "Billing" ? (
+                    <Row>
+                      <Col sm={6} style={style.borderReactRight}>
+                        <div>Charges</div>
+                        <div>Freight({consignerDetails.freightCharge}/kg)</div>
+                        <div>Docket</div>
+                        <div>FOV</div>
+                        <div>ODA</div>
+                        <div>Fuel</div>
+                        <div>To Pay</div>
+                        <div>GST(18%)</div>
+                        <div style={style.borderReactTop}>Total</div>
+                      </Col>
+                      <Col sm={6}>
+                        <div>Amount</div>
+                        <div>{tFreight}.00</div>
+                        <div>{consignerDetails.docketCharges}.00</div>
+                        <div>{consignerDetails.fovCharges}.00</div>
+                        <div>{consignerDetails.odaCharges}.00</div>
+                        <div>{consignerDetails.fuelCharges}.00</div>
+                        <div>{consignerDetails.toPayCharges}.00</div>
+                        <div>{totalGst}%</div>
+                        <div style={style.borderReactTop}>
+                          <strong>{total}</strong>
+                        </div>
+                      </Col>
+                    </Row>
+                  ) : (
+                    <Row>
+                      <Col sm={12}>
+                        <h1>Billing Not Available</h1>
+                      </Col>
+                    </Row>
+                  )}
                 </Col>
               </Row>
               <Row style={style.borderReactTop}>
@@ -271,15 +307,39 @@ const PrintData = (props) => {
         </CardBody>
         <CardFooter>
           <div className="button-items">
+            <Button color="primary" type="submit" onClick={"printBooking"}>
+              Update
+            </Button>
             <Button
               color="primary"
-              type="submit"
               onClick={() => {
-                window.print();
+                setConfirm(true);
               }}
+              id="sa-params"
             >
               Print
             </Button>
+            {confirm ? (
+              <SweetAlert
+                title="Are you sure Want To Print?"
+                warning
+                showCancel
+                confirmBtnBsStyle="success"
+                cancelBtnBsStyle="danger"
+                onConfirm={() => {
+                  setConfirm(false);
+                  setSuccess(true);
+                  dispatch(printAction(data));
+                }}
+                onCancel={() => {
+                  setConfirm(false);
+                  setSuccess(true);
+                  setDynamicDescription("Your imaginary file is safe :)");
+                  setDynamicTitle("Cancelled");
+                }}
+              >
+              </SweetAlert>
+            ) : null}
           </div>
         </CardFooter>
       </Card>

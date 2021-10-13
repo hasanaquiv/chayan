@@ -1,8 +1,15 @@
 const Manifest = require("../../models/Manifest");
 
 const index = async (req, res) => {
+  const search = req.params.search;
   try {
-    const response = await Manifest.find({});
+    let response = "";
+    if (search !== "undefined") {
+      const searchReg = new RegExp(search, "i");
+      response = await Manifest.find({manifestNumber: searchReg}).sort({ _id: -1 });
+    } else {
+      response = await Manifest.find().sort({ _id: -1 });
+    }
     res.status(201).json({ msg: "fetch successfully", response });
   } catch (error) {
     res.status(501).json({ errors: error });
@@ -11,11 +18,7 @@ const index = async (req, res) => {
 };
 
 const store = async (req, res) => {
-  const {
-    manifestOrigin,
-    manifestDestination,
-    docketNUmbers,
-  } = req.body;
+  const { manifestOrigin, manifestDestination, docketNUmbers } = req.body;
   const docketNUmberArr = docketNUmbers.split(",");
   const data = docketNUmberArr.map((value) => {
     return { docketNUmber: value };
@@ -26,7 +29,7 @@ const store = async (req, res) => {
     const manifestInc = oldManifestNumber.substr(6);
     const manifestData = `CHM-${Number(manifestInc) + Number(1)}`;
     const createStore = new Manifest({
-      manifestNumber:manifestData,
+      manifestNumber: manifestData,
       manifestOrigin,
       manifestDestination,
       docketNUmbers: data,

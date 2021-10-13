@@ -33,7 +33,8 @@ const Tracking = (props) => {
     "November",
     "December",
   ];
-  console.log(months[date.getMonth()]);
+  // console.log(months[date.getMonth()]);
+  // console.log(tracking)
 
   return (
     <>
@@ -56,11 +57,11 @@ const Tracking = (props) => {
                       tracking.locations !== undefined &&
                       tracking.locations.map((value, index) => {
                         return (
-                          <div className="timeline-box col-lg-2">
+                          <div className="timeline-box col-lg-2" key={index}>
                             <div className="timeline-spacing">
                               <div className="item-lable bg-primary rounded">
                                 <p className="text-center text-white">
-                                  April, 12
+                                  {value.date}
                                 </p>
                               </div>
                               <div className="timeline-line active">
@@ -73,7 +74,6 @@ const Tracking = (props) => {
                                 <h5>{value.location}</h5>
                               </div>
                             </div>
-                            l
                           </div>
                         );
                       })

@@ -5,14 +5,14 @@ const userReducer = createSlice({
   name: "users",
   initialState: {
     users: [],
-    loader: false,
+    loader: true,
     error: {},
     response: {},
     username:{}
   },
   reducers: {
     addUser: (state, action) => {
-      console.log(action);
+      // console.log(action);
       state.users = [...state.users, action.payload];
     },
     logoutAction: (state, action) => {

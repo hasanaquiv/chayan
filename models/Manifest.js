@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const finalDate = require("./Date");
 
 const MAnifestSchema = new mongoose.Schema(
   {
@@ -15,6 +16,7 @@ const MAnifestSchema = new mongoose.Schema(
       require: true,
     },
     docketNUmbers: [{ docketNUmber: String }],
+    date: { type: String, default: finalDate },
   },
   { timestamps: true }
 );

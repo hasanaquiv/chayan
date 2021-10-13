@@ -3,7 +3,7 @@ import axios from "axios";
 
 const bookingAction = createAsyncThunk("Booking", async (values) => { 
   try {
-    const { data } = await axios("/api/booking", {
+    const { data } = await axios("/api/booking", { 
       method: "post",
       headers: {
         "Content-Type": "application/json",
@@ -16,9 +16,9 @@ const bookingAction = createAsyncThunk("Booking", async (values) => {
   }
 });
 
-const getAllBookings = createAsyncThunk("getAllBookings", async () => {
+const getAllBookings = createAsyncThunk("getAllBookings", async (search) => {
   try {
-    const { data } = await axios.get("/api/booking");
+    const { data } = await axios.get(`/api/booking/${search}`);
     return data;
   } catch (error) {
     return error;

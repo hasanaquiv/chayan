@@ -14,8 +14,6 @@ const Logout = (props) => {
     }
   },[dispatch, props.history, response]);
 
-  console.log(response);
-
   return <></>;
 };
 

@@ -1,9 +1,16 @@
 const POD = require("../../models/POD");
 
 const index = async (req, res) => {
-  try{
-  const response = await POD.find({});
-  res.status(201).json({ msg: "fetch successfully", response });
+  const search = req.params.search;
+  try {
+    let response = "";
+    if (search !== "undefined") {
+      const searchReg = new RegExp(search, "i");
+      response = await POD.find({docketNumber:searchReg}).sort({ _id: -1 });
+    } else {
+      response = await POD.find().sort({ _id: -1 });
+    }
+    res.status(201).json({ msg: "fetch successfully", response });
   } catch (error) {
     res.status(501).json({ errors: error });
     console.log(error);
@@ -22,10 +29,10 @@ const store = async (req, res) => {
 };
 
 const find = async (req, res) => {
-  try{
-  const _id = req.params.id;
-  const response = await POD.findOne({ _id });
-  res.status(201).json({ msg: "fetch successfully", response });
+  try {
+    const _id = req.params.id;
+    const response = await POD.findOne({ _id });
+    res.status(201).json({ msg: "fetch successfully", response });
   } catch (error) {
     res.status(501).json({ errors: error });
     console.log(error);

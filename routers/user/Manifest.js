@@ -8,7 +8,7 @@ const {
 } = require("../../controllers/user/ManifestController");
 
 const Router = express.Router();
-Router.get("/manifest", index);
+Router.get("/manifests/:search", index);
 Router.post("/manifest", store);
 Router.get("/manifest/:id", find);
 Router.patch("/manifest/:id", update);

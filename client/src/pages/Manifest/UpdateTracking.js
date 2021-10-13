@@ -20,9 +20,9 @@ const UpdateTracking = (props) => {
   const dispatch = useDispatch();
   const { trackingResponse, loader, error } = useSelector((state) => state.trackings);
   const { username } = useSelector((state) => state.users);
-  // const location = username.user.area;
+  let location = username.location;
   const [tracking, setTracking] = useState({
-    locations: "location2",
+    locations: location,
     vehicleNumber: id,
     manifestNUmbers: "",
   });
@@ -41,7 +41,7 @@ const UpdateTracking = (props) => {
     event.preventDefault();
     dispatch(updateTrackingAction(tracking));    
     setTracking({
-      locations: "location2",
+      locations: location,
       vehicleNumber: id,
       manifestNUmbers: "",
     });
@@ -53,7 +53,7 @@ const UpdateTracking = (props) => {
     }
   }, [trackingResponse, id]);
 
-  console.log(error)
+  // console.log(username, "get tracking")
   return (
     <>
       <div className="page-content">

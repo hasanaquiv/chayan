@@ -15,10 +15,10 @@ const trackingAction = createAsyncThunk("trackingAction", async (tracking) => {
   }
 });
 
-const getAllTrackings = createAsyncThunk("trackings", async () => {
+const getAllTrackings = createAsyncThunk("trackings", async (search) => {
   try {
-    const { data } = await axios.get("/api/track");
-    return { data };
+    const { data } = await axios.get(`/api/track/${search}`);
+    return data;
   } catch (error) {
     console.log(error);
   }
@@ -27,7 +27,7 @@ const getAllTrackings = createAsyncThunk("trackings", async () => {
 const getTracking = createAsyncThunk("tracking", async (id) => {
   try {
     const { data } = await axios.get(`/api/track/${id}`);
-    return data.response;
+    return data.response[0];
   } catch (error) {
     return error;
   }

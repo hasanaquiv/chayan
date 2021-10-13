@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { manifestAction, getAllManifests } from "../actions/manifestAction";
+import { manifestAction, getAllManifests, getManifest } from "../actions/manifestAction";
 
 const manifestReducer = createSlice({
   name: "users",
@@ -7,9 +7,11 @@ const manifestReducer = createSlice({
     loader: false,
     error: {}, 
     response: {},
-    manifests:{}
+    manifests:{},
+    manifest:{}
   },
   extraReducers: {
+    // manifestAction:
     [manifestAction.pending]: (state, action) => {
       state.loader = true;
     },
@@ -21,6 +23,7 @@ const manifestReducer = createSlice({
       state.loader = false;
       state.errors = action.payload;
     },
+    // getAllManifests
     [getAllManifests.pending]: (state, action) => {
       state.loader = true;
     },
@@ -29,6 +32,18 @@ const manifestReducer = createSlice({
       state.manifests = action.payload;
     },
     [getAllManifests.rejected]: (state, action) => {
+      state.loader = false;
+      state.errors = action.payload;
+    },
+    // getManifest
+    [getManifest.pending]: (state, action) => {
+      state.loader = true;
+    },
+    [getManifest.fulfilled]: (state, action) => {
+      state.loader = false;
+      state.manifest = action.payload;
+    },
+    [getManifest.rejected]: (state, action) => {
       state.loader = false;
       state.errors = action.payload;
     },

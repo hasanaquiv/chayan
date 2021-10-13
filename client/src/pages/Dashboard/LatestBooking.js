@@ -20,7 +20,7 @@ const LatestBooking = () => {
 
   const data = bookings.response;
 
-  console.log(data);
+  // console.log(data);
 
   return (
     <Col lg={12}>
@@ -38,12 +38,12 @@ const LatestBooking = () => {
                   <th></th>
                 </tr>
               </thead>
-              <tbody>
+              {/* <tbody>
                 {data !== undefined &&
-                  data.map((value, index) => {
+                  data.slice(0,4).map((value, index) => { 
                     return (
                       <tr>
-                        <td>
+                        <td key={index}>
                           <Link to={value._id} className="text-body fw-medium">
                             {value.docketNumber}
                           </Link>
@@ -57,7 +57,7 @@ const LatestBooking = () => {
                       </tr>
                     );
                   })}
-              </tbody>
+              </tbody> */}
             </Table>
           </div>
         </CardBody>

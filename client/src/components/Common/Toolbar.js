@@ -1,10 +1,8 @@
-import React from "react";
 import { Button, Form } from "reactstrap";
 
-const Toolbar = () => {
-
+const Toolbar = (props) => {
   return (
-    <React.Fragment>
+    <>
       <div className="btn-toolbar p-3" role="toolbar">
         <div className="btn-group me-2 mb-2 mb-sm-0">
           <Button
@@ -29,12 +27,13 @@ const Toolbar = () => {
                 type="text"
                 className="form-control"
                 placeholder="Search..."
+                onChange={props.inputHandle}
               />
             </div>
           </Form>
         </div>
       </div>
-    </React.Fragment>
+    </>
   );
 };
 

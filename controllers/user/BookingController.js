@@ -1,9 +1,16 @@
 const Booking = require("../../models/Booking");
 
 const index = async (req, res) => {
+  const search = req.params.search;
   try {
-    const response = await Booking.find().sort({ _id: -1 });;
-    res.status(201).json({ msg: "fetch successfully", response }); 
+    let response = "";
+    if (search !== "undefined") {
+      const searchReg = new RegExp(search, "i");
+      response = await Booking.find({docketNumber:searchReg}).sort({ _id: -1 });
+    } else {
+      response = await Booking.find().sort({ _id: -1 });
+    }
+    res.status(201).json({ msg: "fetch successfully", response });
   } catch (error) {
     res.status(501).json({ errors: error });
     console.log(error);

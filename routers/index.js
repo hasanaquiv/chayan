@@ -10,6 +10,8 @@ const Test = require("./user/Test");
 const PrintDocket = require("./user/PrintDocket");
 const Profile = require("./user/Profile");
 const Auth = require("../middlewares/Auth");
+const Billing = require("./user/Billing");
+
 
 
 
@@ -25,6 +27,7 @@ const Router = (app) => {
   app.use("/api", AuthRouter); 
   app.use("/api", Profile); 
   app.use("/api", PrintDocket); 
+  app.use("/api", Billing);  
 };
 
 module.exports = Router;

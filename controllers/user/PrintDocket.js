@@ -1,4 +1,6 @@
 const Booking = require("../../models/Booking");
+const Print = require("../../models/Print");
+
 
 const index = async (req, res) => {
   try {
@@ -11,58 +13,26 @@ const index = async (req, res) => {
 };
 
 const store = async (req, res) => {
-  const {
-    origin,
-    destination,
-    consigner,
-    consignee,
-    billTo,
-    actualWeight,
-    chargeWeight,
-    invoiceNo,
-    invoiceAmount,
-    waybill,
-    paymentMode,
-    pickupBranch,
-    remarks,
-    handling,
-  } = req.body;
   try {
-    const findId = await Booking.findOne().sort({ _id: -1 });
-    const docketNumber = findId.docketNumber;
-    const docketInc = docketNumber.substr(3);
-    const docketData = `CHD${Number(docketInc) + Number(1)}`;
-    const createStore = new Booking({
-      docketNumber: docketData,
-      origin,
-      destination,
-      consigner,
-      consignee,
-      billTo,
-      actualWeight,
-      chargeWeight,
-      invoiceNo,
-      invoiceAmount,
-      waybill,
-      paymentMode,
-      pickupBranch,
-      remarks,
-      handling,
-    });
+    const docketNumber = await Print.findOne({docketNumber:req.body.docketNumber});
+    if(docketNumber){      
+      return res.json({msg: "Docket Available"})
+    }
+    const createStore = new Print(req.body);
     const response = await createStore.save();
-    res.status(201).json({ msg: "Add successfully", response });
+    res.status(201).json({ msg: "Add successfully", response }); 
   } catch (error) {
     res.status(501).json({ errors: error });
     console.log(error);
   }
 };
 
-const find = async (req, res) => {
+const find = async (req, res) => {  
   try {
     const _id = req.params.id;
     const responseId = await Booking.findOne({ _id });
-    const response = await Booking.aggregate([
-      { $match: { consigner: responseId.consigner } },
+    const response = await Booking.aggregate([ 
+      { $match: { consigner: responseId.consigner, docketNumber:responseId.docketNumber } },
       {
         $lookup: {
           from: "consigners",
@@ -72,7 +42,7 @@ const find = async (req, res) => {
         },
       },
       {$unwind: '$consignerDetails'},
-      { $limit: 1 }
+      // { $limit: 1 }
     ]);
     const data = response[0]
     res.status(201).json({ msg: "fetch successfully", data });

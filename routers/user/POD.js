@@ -8,7 +8,7 @@ const {
 } = require("../../controllers/user/PODController");
 
 const Router = express.Router();
-Router.get("/pod", index);
+Router.get("/pod/:search", index);
 Router.post("/pod", store);
 Router.get("/pod/:id", find);
 Router.patch("/pod/:id", update);

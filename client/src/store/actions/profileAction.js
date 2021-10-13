@@ -5,7 +5,6 @@ const getUser = createAsyncThunk("getUser", async (username) => {
   // const { data } = await axios.get(`/api/user/${username}`);
   const token = JSON.parse(localStorage.getItem("authUser"));
   try {
-      
     const { data } = await axios.get(`/api/user/${username}`, {
       headers: { Authorization: token },
     });
@@ -16,4 +15,13 @@ const getUser = createAsyncThunk("getUser", async (username) => {
   }
 });
 
-export { getUser };
+const getAllUser = createAsyncThunk("getAllUser", async () => {
+  try {
+    const { data } = await axios.get("/api/user");
+    return data.response;
+  } catch (error) {
+    return error;
+  }
+});
+
+export { getUser, getAllUser };

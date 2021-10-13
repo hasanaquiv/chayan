@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Dropdown,
   DropdownToggle,
@@ -8,7 +8,8 @@ import {
 
 import { Link } from "react-router-dom";
 
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { logoutAction } from "../../store/reducers/userReducer";
 
 // users
 import user4 from "../../assets/images/users/avatar-4.jpg";
@@ -17,7 +18,18 @@ const ProfileMenu = (props) => {
   // Declare a new state variable, which we'll call "menu"
   const [menu, setMenu] = useState(false);
 
-  const { username, loader } = useSelector((state) => state.users);
+  const dispatch = useDispatch();
+  const { username, loader, response } = useSelector((state) => state.users);
+
+
+  useEffect(() => {
+    if (username === "token Expired") {
+      dispatch(logoutAction());
+      if (response === "logout") {
+        props.history.push("/login");
+      }
+    }
+  }, [dispatch, props.history, response, username]);
 
   return (
     <>
@@ -36,9 +48,7 @@ const ProfileMenu = (props) => {
             src={user4}
             alt="Header Avatar"
           />{" "}
-          <span className="d-none d-xl-inline-block ms-1">
-          {username.name}
-          </span>{" "}
+          <span className="d-none d-xl-inline-block ms-1">{!loader?username.name:"Loading..."}</span>{" "}
           <i className="mdi mdi-chevron-down d-none d-xl-inline-block"></i>{" "}
         </DropdownToggle>
         <DropdownMenu className="dropdown-menu-end">

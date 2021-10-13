@@ -1,5 +1,8 @@
 import React from "react";
 
+import Consignees from "../pages/Consigner/Consignees";
+
+
 import Home from "../pages/Dashboard/Home";
 
 
@@ -13,9 +16,11 @@ import Booking from "../pages/Booking/Booking";
 import Bookings from "../pages/Booking/Bookings";
 import BookingUpdate from "../pages/Booking/BookingUpdate";
 import PrintDocket from "../pages/Booking/PrintDocket";
+import AddConsigner from "../pages/Consigner/AddConsigner";
 import Consigner from "../pages/Consigner/Consigner";
 import Consigners from "../pages/Consigner/Consigners";
 import Manifests from "../pages/Manifest/Manifests";
+import Manifest from "../pages/Manifest/Manifest";
 import AddManifest from "../pages/Manifest/AddManifest";
 import Tracks from "../pages/Manifest/Tracks";
 import Tracking from "../pages/Manifest/Tracking";
@@ -23,6 +28,8 @@ import AddTracking from "../pages/Manifest/AddTracking";
 import UpdateTracking from "../pages/Manifest/UpdateTracking";
 import PODS from "../pages/Manifest/PODS";
 import AddPod from "../pages/POD/AddPod";
+import Billings from "../pages/BIlling/Billings";
+import Billing from "../pages/BIlling/Billing";
 
 // Admin
 import Admin from "../pages/Admin/Admin";
@@ -40,12 +47,15 @@ import UserProfile from "../pages/Authentication/user-profile";
 const userRoutes = [
   { path: "/dashboard", component: Dashboard }, 
   { path: "/booking-new", component: Booking },
-  { path: "/consigner-add", component: Consigner },
+  { path: "/consigner-add", component: AddConsigner },
+  { path: "/consigner/:id", component: Consigner },
   { path: "/bookings", component: Bookings },
   { path: "/booking-update/:id", component: BookingUpdate },
   { path: "/print-docket/:id", component: PrintDocket },
   { path: "/consigners", component: Consigners },
+  { path: "/consignees", component: Consignees },
   { path: "/manifests", component: Manifests },
+  { path: "/manifest/:id", component: Manifest },
   { path: "/manifest-add", component: AddManifest },
   { path: "/tracks", component: Tracks },
   { path: "/tracking/:id", component: Tracking },
@@ -54,6 +64,8 @@ const userRoutes = [
   { path: "/pods", component: PODS },
   { path: "/add-pod", component: AddPod },
   { path: "/home/:id", component: Home, }, 
+  { path: "/billings", component: Billings, }, 
+  { path: "/billing/:id", component: Billing, }, 
 
   //Admin
   { path: "/add-admin", component: Admin },

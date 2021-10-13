@@ -1,10 +1,17 @@
 const Consignee = require("../../models/Consignee");
 
 const index = async (req, res) => {
+  const search = req.params.search;
   try {
-    const response = await Consignee.find({});
+    let response = "";
+    if (search !== "undefined") {
+      const searchReg = new RegExp(search, "i");
+      response = await Consignee.find({ companyName: searchReg }).sort({ _id: -1 }); 
+    }else{
+      response = await Consignee.find().sort({ _id: -1 });
+    }    
     res.status(201).json({ msg: "fetch successfully", response });
-  } catch (error) {
+  } catch (error) { 
     res.status(501).json({ errors: error });
     console.log(error);
   }

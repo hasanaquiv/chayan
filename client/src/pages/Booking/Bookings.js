@@ -1,10 +1,9 @@
-import { useEffect} from "react";
+import { useState,useEffect} from "react";
 
 import { Link } from "react-router-dom";
-import { Row, Col, Button, Input, Label, Card, Table } from "reactstrap";
+import { Row, Col, Input, Label, Card, Table } from "reactstrap";
 import { getAllBookings } from "../../store/actions/bookingAction";
 import { useSelector, useDispatch } from "react-redux";
-
 //Import Breadcrumb
 import Breadcrumbs from "../../components/Common/Breadcrumb";
 import Loader from "../../components/HorizontalLayout/Loader";
@@ -12,28 +11,40 @@ import Loader from "../../components/HorizontalLayout/Loader";
 
  
 //Import Email Topbar
-import Toolbar from "../../components/Common/Toolbar";
+import Toolbar from "../../components/Common/Toolbar"; 
+import Pagination from "../../components/Common/Pagination";
 
 const Bookings = () => {
-
   
   const dispatch = useDispatch();
   const { bookings, loader } = useSelector((state) => state.bookings);
+  const [showPerPage, setShowPerPage] = useState(5);
+  const [pagination, setPagination] = useState({
+    start: 0,
+    end: showPerPage,
+  });
+  const [search, setSearch] = useState();
+
+  const onPaginationChange = (start, end) => {
+    setPagination({ start: start, end: end });
+  };
+
+  const inputHandle = (event) => {
+    event.preventDefault();
+    setSearch(event.target.value);
+  };
 
   useEffect(() => {
-    dispatch(getAllBookings(getAllBookings));
-  }, [dispatch]);
+    dispatch(getAllBookings(search));
+  }, [dispatch, search]);
 
   const data = bookings.response;
-
-  console.log(data);
 
   return (
     <>
       <div className="page-content">
         {/* Render Breadcrumbs */}
         <Breadcrumbs title="Booking" breadcrumbItem="View All" />
-
         <Row>
           <Col xs="12">
             {/* Render Email SideBar */}
@@ -41,22 +52,22 @@ const Bookings = () => {
             <div className="mb-3">
               <Card>
                 {/* Render Email Top Tool Bar */}
-                <Toolbar />
+                <Toolbar inputHandle={inputHandle} />
                 <div className="table-responsive">
                   <Table className="table mb-0">
                     <thead>
                       <tr>
                         <th>#</th>
                         <th>Docket No.</th>
-                        <th>Company Name</th>
+                        <th>Company Code</th>
                         <th>Origan</th>
                         <th>Destination</th>
                         <th>Date</th>
                       </tr>
                     </thead>
                     <tbody>
-                    {!loader ? data !== undefined && data.map((value, index) => {
-                      return (<tr>
+                    {data !== undefined && data.map((value, index) => {
+                      return (<tr key={index}>
                         <td>
                           <Input type="checkbox" id="chk19" />
                           <Label htmlFor="chk19" className="toggle" />
@@ -66,37 +77,26 @@ const Bookings = () => {
                             {value.docketNumber}
                           </Link>
                         </td>
-                        <td>Samsung</td>
-                        <td>New Delhi</td>
-                        <td>Chennai</td>
-                        <td>23 Aug</td>
+                        <td>{value.consigner}</td>
+                        <td>{value.origin}</td>
+                        <td>{value.destination}</td>
+                        <td>{value.date}</td>
                       </tr>)
-                    }):<Loader/>}
+                    })}
                     </tbody>
                   </Table>
                 </div>
               </Card>
               <Row>
-                <Col xs="7">Showing 1 - 10 of 1,524</Col>
+                <Col xs="7">{`Showing ${pagination.start} - ${
+                  pagination.end
+                } of ${data !== undefined && data.length}`}</Col>
                 <Col xs="5">
-                  <div className="btn-group float-end">
-                    <Button
-                      type="button"
-                      color="success"
-                      size="sm"
-                      className="waves-effect"
-                    >
-                      <i className="fa fa-chevron-left" />
-                    </Button>
-                    <Button
-                      type="button"
-                      color="success"
-                      size="sm"
-                      className="waves-effect"
-                    >
-                      <i className="fa fa-chevron-right" />
-                    </Button>
-                  </div>
+                  <Pagination
+                    showPerPage={showPerPage}
+                    onPaginationChange={onPaginationChange}
+                    total={data}
+                  />
                 </Col>
               </Row>
             </div>

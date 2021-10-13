@@ -8,7 +8,7 @@ const {
 } = require("../../controllers/user/BookingController"); 
 
 const Router = express.Router();
-Router.get("/booking", index);
+Router.get("/booking/:search", index);
 Router.post("/booking", store);
 Router.get("/booking/:id", find);
 Router.patch("/booking/:id", update);

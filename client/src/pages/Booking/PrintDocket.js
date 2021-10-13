@@ -4,7 +4,6 @@ import { Row, Col } from "reactstrap";
 import { useSelector, useDispatch } from "react-redux";
 
 import { ToastContainer } from "react-toastify";
-import { useParams, useRouteMatch } from "react-router-dom";
 import Loader from "../../components/HorizontalLayout/Loader";
 
 import "react-toastify/dist/ReactToastify.css";
@@ -24,12 +23,14 @@ const Booking = (props) => {
   const id = ids.substr(14);
 
   // const id = "613ef7c8d3c47e083202283e";
+  // console.log(id);
 
   useEffect(() => {
     dispatch(getPrintInfo(id));
   }, [dispatch, id]);
 
   const data = prints.data;
+  // console.log(data);
   return (
     <>
       <div className="page-content">
@@ -38,7 +39,7 @@ const Booking = (props) => {
           <Col xl="12">
             <ToastContainer />
             {!loader ? (
-              data !== undefined && <PrintData data={data} />
+              data !== undefined && <PrintData data={data} id={id} />
             ) : (
               <Loader />
             )}

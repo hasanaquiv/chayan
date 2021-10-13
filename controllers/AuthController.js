@@ -2,17 +2,6 @@ const bcrypt = require("bcryptjs");
 const User = require("../models/User");
 const JwtToken = require("../middlewares/JwtToken");
 
-const Home = async (req, res) => {
-  // res.status(201).json(req.user.tokenUser)
-  const { tokenUser } = req.user;
-  try {
-    const user = await User.findOne({ username:tokenUser });
-    res.status(201).json({ user });
-  } catch (error) {
-    console.log(error);
-  }
-};
-
 const Register = async (req, res) => {
   const { name, username, password, location, role } = req.body;
   try {
@@ -22,7 +11,13 @@ const Register = async (req, res) => {
     }
     const hash = await bcrypt.hash(password, 10);
 
-    const saveUser = new User({ name, username, location, role, password: hash });
+    const saveUser = new User({
+      name,
+      username,
+      location,
+      role,
+      password: hash,
+    });
     const user = await saveUser.save();
 
     if (!user) {
@@ -42,16 +37,30 @@ const Login = async (req, res) => {
   try {
     const user = await User.findOne({ username, location });
     if (!user) {
-      return res.status(403).json({ errors: "INvalid User" });
+      return res.json({ msg: "INvalid User" });
     }
     const verify = await bcrypt.compare(password, user.password);
     if (!verify) {
-      return res.status(402).json({ errors: "INvalid User And Password" });
+      return res.json({ msg: "INvalid User And Password" });
     }
 
     const tokenUser = user.username;
     const token = JwtToken(tokenUser);
     res.status(201).json({ msg: "User Login Successfully", token });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const Home = async (req, res) => {
+  const { tokenUser } = req.user;
+  try {
+    const user = await User.findOne({ username: tokenUser });
+    if (user) {
+      res.status(201).json({ user });
+    } else {
+      res.json({ user: "token Expired" });
+    }
   } catch (error) {
     console.log(error);
   }

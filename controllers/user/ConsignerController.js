@@ -1,8 +1,15 @@
 const Consigner = require("../../models/Consigner");
 
 const index = async (req, res) => {
+  const search = req.params.search;
   try {
-    const response = await Consigner.find({});
+    let response = "";
+    if (search !== "undefined") {
+      const searchReg = new RegExp(search, "i");
+      response = await Consigner.find({ companyName: searchReg });
+    } else {
+      response = await Consigner.find({});
+    }
     res.status(201).json({ msg: "fetch successfully", response });
   } catch (error) {
     res.status(501).json({ errors: error });
@@ -23,7 +30,7 @@ const store = async (req, res) => {
     docketCharges,
     odaCharges,
     fuelCharges,
-    toPayCharges,    
+    toPayCharges,
     volumetric,
     customerType,
     address1,
@@ -62,7 +69,7 @@ const store = async (req, res) => {
       pincode,
     });
     const response = await createStore.save();
-    res.status(201).json({ msg: "Add successfully", response });
+    res.status(201).json({ msg: "Add successfully", response }); 
   } catch (error) {
     res.status(501).json({ errors: error });
     console.log(error);
@@ -73,6 +80,17 @@ const find = async (req, res) => {
   try {
     const _id = req.params.id;
     const response = await Consigner.findOne({ _id });
+    res.status(201).json({ msg: "fetch successfully", response }); 
+  } catch (error) {
+    res.status(501).json({ errors: error });
+    console.log(error);
+  }
+};
+
+const findByCode = async (req, res) => {
+  try {
+    const consignerCode = req.params.id;
+    const response = await Consigner.findOne({ consignerCode });
     res.status(201).json({ msg: "fetch successfully", response });
   } catch (error) {
     res.status(501).json({ errors: error });
@@ -107,4 +125,4 @@ const destroy = async (req, res) => {
   }
 };
 
-module.exports = { index, store, find, update, destroy };
+module.exports = { index, store, find, update, destroy, findByCode };

@@ -6,7 +6,7 @@ const consigneeAction = createAsyncThunk("consignee", async (consignee) => {
     const { data } = await axios("/api/consignee", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      data: JSON.stringify(consignee),
+      data: JSON.stringify(consignee),  
     });
 
     return data;
@@ -15,9 +15,9 @@ const consigneeAction = createAsyncThunk("consignee", async (consignee) => {
   }
 });
 
-const getAllConsignees = createAsyncThunk("getAllConsignee", async () => {
+const getAllConsignees = createAsyncThunk("getAllConsignee", async (search) => {
   try {
-    const { data } = await axios.get(`/api/consignee`);
+    const { data } = await axios.get(`/api/consignee/${search}`);
     return data;
   } catch (error) {
     return error;

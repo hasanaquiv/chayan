@@ -1,23 +1,18 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from "react";
 
 import { Row, Col, Button, Modal } from "reactstrap";
 import { AvForm, AvField } from "availity-reactstrap-validation";
-import { useSelector, useDispatch } from "react-redux";
+import axios from "axios";
 
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+const VolumetricModel = (props) => {
+  const [modal_small, setModal_small] = useState(false);  
+  const [vol, setVol] = useState()
 
-//Import Breadcrumb
-import { consignerAction } from "../../store/actions/consignerAction";
-
-const volumetric = {
-  position:{
-    position:"absolute"
+  const dataVol = async (id) =>{
+    const { data } = await axios.get(`/api/consigner-code/${id}`); 
+      setVol(data.response.volumetric)
   }
-}
-
-const VolumetricModel = ({ parentCallback }) => {
-  const [modal_small, setModal_small] = useState(false);
 
   function tog_small() {
     setModal_small(!modal_small);
@@ -25,43 +20,22 @@ const VolumetricModel = ({ parentCallback }) => {
   }
 
   function removeBodyCss() {
-    document.body.classList.add("no_padding");
+    document.body.classList.add("no_padding"); 
   }
 
-  const [volumetric, setVolumetric] = useState({
-    length: "",
-    width: "",
-    height: "",
-    volume: "4000",
-  });
 
-  const { loader, response } = useSelector((state) => state.consigners);
-  const dispatch = useDispatch();
-
-  const inputHandle = (event) => {
-    const { name, value } = event.target;
-
-    setVolumetric((preValue) => {
-      return {
-        ...preValue,
-        [name]: value,
-      };
-    });
-  };
-
-  const onSubmit = (event) => {
+  const onSubmit = (event,value) => {
     event.preventDefault();
-    const {length, width, height, volume} = volumetric
+    const {length, width, height, volume} = value
     const area = (length*width*height)/volume;
     setModal_small(false);    
-    parentCallback(area);
+    props.parentCallback(area);   
   };
 
   useEffect(() => {
-    if (response) {
-      toast.success(response.msg);
-    }
-  }, [response]);
+    dataVol(props.consignerVol)
+  }, [props.consignerVol]); 
+
   return (
     <>
       <button
@@ -69,13 +43,11 @@ const VolumetricModel = ({ parentCallback }) => {
         onClick={() => {
           tog_small();
         }}
-        className="btn btn-primary waves-effect volumetric"
-        // className="btn btn-primary waves-effect"
+        className="btn btn-primary waves-effect"
         data-toggle="modal"
         data-target=".bs-example-modal-sm"
       >
-        <i className="bx bx-plus font-size-16 align-middle me-0" />
-      </button>
+        <i className="bx bx-plus font-size-16 align-middle me-0" />      </button>
       <Modal
         size="sm"
         isOpen={modal_small}
@@ -110,8 +82,7 @@ const VolumetricModel = ({ parentCallback }) => {
                     type="number"
                     errorMessage="Enter Lenth"
                     className="form-control"
-                    onChange={inputHandle}
-                    value={volumetric.length}
+                    value=""
                     validate={{ required: { value: true } }}
                     id="validationCustom01"
                   />
@@ -125,8 +96,7 @@ const VolumetricModel = ({ parentCallback }) => {
                     type="number"
                     errorMessage="Enter Width"
                     className="form-control"
-                    onChange={inputHandle}
-                    value={volumetric.width}
+                    value=""
                     validate={{ required: { value: true } }}
                     id="validationCustom02"
                   />
@@ -142,8 +112,7 @@ const VolumetricModel = ({ parentCallback }) => {
                     type="number"
                     errorMessage=" Enter Height."
                     className="form-control"
-                    onChange={inputHandle}
-                    value={volumetric.height}
+                    value=""
                     validate={{ required: { value: true } }}
                     id="validationCustom03"
                   />
@@ -157,9 +126,7 @@ const VolumetricModel = ({ parentCallback }) => {
                     type="number"
                     errorMessage=" Enter Phone Number."
                     className="form-control"
-                    onChange={inputHandle}
-                    value={volumetric.volume}
-                    // value="4000"
+                    value={vol}
                     validate={{ required: { value: true } }}
                     id="validationCustom03"
                     disabled
@@ -169,7 +136,8 @@ const VolumetricModel = ({ parentCallback }) => {
             </Row>
             <div className="button-items">
               <Button color="primary" type="submit">
-                {loader ? "Loading..." : "Save"}
+                {/* {loader ? "Loading..." : "Save"} */}
+                Add
               </Button>
             </div>
           </AvForm>

@@ -16,25 +16,37 @@ const consignerAction = createAsyncThunk("consigner", async (values) => {
   }
 });
 
-const getAllConsigners = createAsyncThunk("getAllConsigners", async () => {
+const getAllConsigners = createAsyncThunk("getAllConsigners", async (search) => {
   try {
-    const { data } = await axios.get("/api/consigner");
+    const { data } = await axios.get(`/api/consigners/${search}`);
     return data;
   } catch (error) {
     return error;
   }
 });
 
-const getAllConsigner = createAsyncThunk(
+const getConsigner = createAsyncThunk(
   "getAllConsigner",
-  async (consignerCode) => {
+  async (id) => {
     try {
-      const { data } = await axios.get(`/api/consigner/CHC1`);
-      return data;
+      const { data } = await axios.get(`/api/consigner/${id}`); 
+      return data.response;
     } catch (error) {
       return error;
     }
   }
 );
 
-export { consignerAction, getAllConsigners, getAllConsigner };
+const getConsignerCode = createAsyncThunk(
+  "getConsignerCode",
+  async (id) => {
+    try {
+      const { data } = await axios.get(`/api/consigner-code/${id}`); 
+      return data.response;
+    } catch (error) {
+      return error;
+    }
+  }
+);
+
+export { consignerAction, getAllConsigners, getConsigner, getConsignerCode };

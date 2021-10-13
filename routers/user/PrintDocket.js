@@ -9,7 +9,7 @@ const {
 
 const Router = express.Router();
 Router.get("/print-docket", index);
-Router.post("/booking", store);
+Router.post("/print-docket", store);
 Router.get("/print-docket/:id", find);
 Router.patch("/booking/:id", update);
 Router.delete("/booking/:id", destroy);

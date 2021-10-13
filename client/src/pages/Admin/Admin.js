@@ -60,7 +60,7 @@ const Admin = () => {
     })
   },[dispatch, response])
 
-  console.log(response)
+  // console.log(response)
 
   return (
     <>

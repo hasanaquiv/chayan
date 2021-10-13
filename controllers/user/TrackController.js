@@ -1,8 +1,15 @@
 const Track = require("../../models/Track");
 
 const index = async (req, res) => {
+  const search = req.params.search;
   try {
-    const response = await Track.find({});
+    let response = "";
+    if (search !== "undefined") {
+      const searchReg = new RegExp(search, "i");
+      response = await Track.find({vehicleNumber: searchReg}).sort({ _id: -1 });
+    } else {
+      response = await Track.find().sort({ _id: -1 });
+    }
     res.status(201).json({ msg: "fetch successfully", response });
   } catch (error) {
     res.status(501).json({ errors: error });
@@ -16,13 +23,13 @@ const store = async (req, res) => {
   const data = manifestNUmberArr.map((value) => {
     return { manifestNUmber: value };
   });
-  const locationData = {location: locations}
+  const locationData = { location: locations };
   try {
     const createStore = new Track({
       driverName,
       vehicleNumber,
       manifestNUmbers: data,
-      locations:locationData,
+      locations: locationData,
     });
     const response = await createStore.save();
     res.status(201).json({ msg: "Add successfully", response });
@@ -52,7 +59,7 @@ const update = async (req, res) => {
       return { manifestNUmber: value };
     });
 
-    const locationData = {location: locations}
+    const locationData = { location: locations };
     const response = await Track.updateOne(
       { vehicleNumber: vehicleNumber },
       {

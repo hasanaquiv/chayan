@@ -16,7 +16,7 @@ import logo from "../../assets/images/icon.png";
 
 const Login = (props) => {
   const dispatch = useDispatch();
-  const { response, loader, errors } = useSelector((state) => state.users);
+  const { response, loader, error } = useSelector((state) => state.users);
 
   const [user, setUser] = useState({
     username: "",
@@ -41,13 +41,15 @@ const Login = (props) => {
   };
 
   useEffect(() => {
-    if (errors) {
-      errors.map((err) => toast.error(err.msg));
+    if (response) {
+      toast.error(response.msg);
     }
     if (response.token) {
       props.history.push("/dashboard");
     }
-  }, [props.history, errors, response.token]);
+  }, [props.history, error, response.token, response.msg, response]);
+
+  // console.log(response)
 
   return (
     <>
@@ -82,10 +84,6 @@ const Login = (props) => {
                         handleValidSubmit(e, v);
                       }}
                     >
-                      {props.error && typeof props.error === "string" ? (
-                        <Alert color="danger">{props.error}</Alert>
-                      ) : null}
-
                       <div className="mb-3">
                         <AvField
                           name="username"

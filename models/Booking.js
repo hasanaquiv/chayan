@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-
+const finalDate = require("./Date");
 const BookingSchema = new mongoose.Schema(
   {
     docketNumber: {
@@ -30,7 +30,7 @@ const BookingSchema = new mongoose.Schema(
       type: Number,
       require: true,
     },
-    volumetricWeight:{
+    volumetricWeight: {
       type: Number,
       require: true,
     },
@@ -60,13 +60,14 @@ const BookingSchema = new mongoose.Schema(
     handling: {
       type: String,
     },
+    date: { type: String, default: finalDate },
   },
   {
     toObject: { virtuals: true },
   },
   { timestamps: true }
 );
- 
+
 const Booking = new mongoose.model("Booking", BookingSchema);
 
 module.exports = Booking;

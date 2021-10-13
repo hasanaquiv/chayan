@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const finalDate = require("./Date");
 
 const TrackSchema = new mongoose.Schema(
   {
@@ -9,9 +10,11 @@ const TrackSchema = new mongoose.Schema(
     vehicleNumber: {
       type: String,
       require: true,
-    },    
-    locations: [{location: String}],
-    manifestNUmbers: [{ manifestNUmber: String }],
+    },
+    locations: [{ location: String, date: { type: String, default: finalDate }  }],
+    manifestNUmbers: [
+      { manifestNUmber: String},
+    ],
   },
   { timestamps: true }
 );
