@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { consigneeAction, getAllConsignees } from "../actions/consigneeAction";
+import { consigneeAction, getAllConsignees,getConsignee,updateConsignees } from "../actions/consigneeAction";
 
 const consigneeReducer = createSlice({
   name: "consignee",
@@ -8,6 +8,8 @@ const consigneeReducer = createSlice({
     error: {},
     responseCon: {},
     consignees: {},
+    consigneeFind: {},
+    updateResponse:{}
   },
   extraReducers: {
     [consigneeAction.pending]: (state, action) => {
@@ -29,6 +31,28 @@ const consigneeReducer = createSlice({
       state.consignees = action.payload;
     },
     [getAllConsignees.rejected]: (state, action) => {
+      state.loader = false;
+      state.error = action.payload;
+    },
+    [updateConsignees.pending]: (state, action) => {
+      state.loader = false;
+    },
+    [updateConsignees.fulfilled]: (state, action) => {
+      state.loader = false;
+      state.updateResponse = action.payload;
+    },
+    [updateConsignees.rejected]: (state, action) => {
+      state.loader = false;
+      state.error = action.payload;
+    },
+    [getConsignee.pending]: (state, action) => {
+      state.loader = false;
+    },
+    [getConsignee.fulfilled]: (state, action) => {
+      state.loader = false;
+      state.consigneeFind = action.payload;
+    },
+    [getConsignee.rejected]: (state, action) => {
       state.loader = false;
       state.error = action.payload;
     },

@@ -27,7 +27,7 @@ const store = async (req, res) => {
     const findId = await Manifest.findOne().sort({ _id: -1 });
     const oldManifestNumber = findId.manifestNumber;
     const manifestInc = oldManifestNumber.substr(6);
-    const manifestData = `CHM-${Number(manifestInc) + Number(1)}`;
+    const manifestData = `CHM${Number(manifestInc) + Number(1)}`;
     const createStore = new Manifest({
       manifestNumber: manifestData,
       manifestOrigin,

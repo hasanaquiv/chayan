@@ -1,11 +1,11 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const podAction = createAsyncThunk("pod", async (pod) => {
+const podAction = createAsyncThunk("pod", async (formData) => {
   const { data } = await axios("/api/pod", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    data: JSON.stringify(pod),
+    data: formData,
   });
   return data;
 });

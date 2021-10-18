@@ -1,4 +1,6 @@
 const Track = require("../../models/Track");
+const Manifest = require("../../models/Manifest");
+
 
 const index = async (req, res) => {
   const search = req.params.search;
@@ -10,6 +12,27 @@ const index = async (req, res) => {
     } else {
       response = await Track.find().sort({ _id: -1 });
     }
+    res.status(201).json({ msg: "fetch successfully", response });
+  } catch (error) {
+    res.status(501).json({ errors: error });
+    console.log(error);
+  }
+};
+
+const user = async (req, res) => {
+  const search = req.params.search;
+  try {
+    // const rd = await Manifest.findOne({ "docketNumbers.docketNumber":search})
+    const rd = await Manifest.aggregate([
+      { $unwind: "$docketNUmbers" },
+      {$match: { "docketNUmbers.docketNUmber":search}} 
+    ]) 
+    const ad = rd[0].manifestNumber; 
+
+    const response = await Track.aggregate([
+      {$match: { "manifestNUmbers.manifestNUmber":ad}}
+    ])
+    // console.log(md)
     res.status(201).json({ msg: "fetch successfully", response });
   } catch (error) {
     res.status(501).json({ errors: error });
@@ -84,4 +107,4 @@ const destroy = async (req, res) => {
   }
 };
 
-module.exports = { index, store, find, update, destroy };
+module.exports = { index, user, store, find, update, destroy };

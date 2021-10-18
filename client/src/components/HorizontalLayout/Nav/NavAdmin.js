@@ -27,7 +27,7 @@ const NavAdmin = (props) => {
                 }}
                 to="view-all"
               >
-                Booking <div className="arrow-down"></div>
+                Booking
               </Link>
               <div className={classname("dropdown-menu", { show: dashboard })}>
                 <Link to="/booking-new" className="dropdown-item">
@@ -48,7 +48,7 @@ const NavAdmin = (props) => {
                 }}
                 to="dashboard"
               >
-                Consigner <div className="arrow-down"></div>
+                Consigner
               </Link>
               <div className={classname("dropdown-menu", { show: dashboard })}>
                 <Link to="/consigner-add" className="dropdown-item">
@@ -73,7 +73,7 @@ const NavAdmin = (props) => {
                 }}
                 to="dashboard"
               >
-                Manifest <div className="arrow-down"></div>
+                Manifest
               </Link>
               <div className={classname("dropdown-menu", { show: dashboard })}>
                 <Link to="/manifest-add" className="dropdown-item">
@@ -98,7 +98,7 @@ const NavAdmin = (props) => {
                 }}
                 to="dashboard"
               >
-                Track <div className="arrow-down"></div>
+                Track
               </Link>
               <div className={classname("dropdown-menu", { show: dashboard })}>
                 <Link to="/tracking-add" className="dropdown-item">
@@ -119,7 +119,7 @@ const NavAdmin = (props) => {
                 }}
                 to="dashboard"
               >
-                Sub Admin <div className="arrow-down"></div>
+                Sub Admin
               </Link>
               <div className={classname("dropdown-menu", { show: dashboard })}>
                 <Link to="/add-admin" className="dropdown-item">
@@ -141,7 +141,7 @@ const NavAdmin = (props) => {
                 }}
                 to="dashboard"
               >
-                Billing <div className="arrow-down"></div>
+                Billing
               </Link>
               <div className={classname("dropdown-menu", { show: dashboard })}>
                 <Link to="/add-pod" className="dropdown-item">

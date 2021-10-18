@@ -8,7 +8,7 @@ const {
 } = require("../../controllers/user/ConsigneeController");
 
 const Router = express.Router();
-Router.get("/consignee/:search", index); 
+Router.get("/consignees/:search", index); 
 Router.post("/consignee/", store);
 Router.get("/consignee/:id", find);
 Router.patch("/consignee/:id", update);

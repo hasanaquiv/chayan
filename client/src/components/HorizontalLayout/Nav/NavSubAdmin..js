@@ -27,7 +27,7 @@ const NavSubAdmin = (props) => {
               }}
               to="view-all"
             >
-              Booking <div className="arrow-down"></div>
+              Booking
             </Link>
             <div className={classname("dropdown-menu", { show: dashboard })}>
               <Link to="/booking-new" className="dropdown-item">
@@ -55,7 +55,7 @@ const NavSubAdmin = (props) => {
               }}
               to="dashboard"
             >
-              Manifest <div className="arrow-down"></div>
+              Manifest
             </Link>
             <div className={classname("dropdown-menu", { show: dashboard })}>
               <Link to="/manifest-add" className="dropdown-item">
@@ -76,7 +76,7 @@ const NavSubAdmin = (props) => {
               }}
               to="dashboard"
             >
-              Track <div className="arrow-down"></div>
+              Track
             </Link>
             <div className={classname("dropdown-menu", { show: dashboard })}>
               <Link to="/tracks" className="dropdown-item">

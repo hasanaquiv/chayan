@@ -65,7 +65,9 @@ const Tracks = () => {
                     <tbody>
                       {!loader ? (
                         data !== undefined &&
-                        data.map((value, index) => {
+                        data
+                          .slice(pagination.start, pagination.end)
+                          .map((value, index) => {
                           const { _id, driverName, vehicleNumber } = value;
                           return (
                             <tr key={index}>  

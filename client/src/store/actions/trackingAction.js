@@ -32,6 +32,15 @@ const getTracking = createAsyncThunk("tracking", async (id) => {
     return error;
   }
 });
+
+const getUserTrack = createAsyncThunk("userTracking", async (search) => {
+  try {
+    const { data } = await axios.get(`/api/user-track/${search}`);
+    return data.response[0];
+  } catch (error) {
+    return error;
+  }
+});
  
 const updateTrackingAction = createAsyncThunk(
   "updateTracking",
@@ -50,4 +59,4 @@ const updateTrackingAction = createAsyncThunk(
   }
 );
 
-export { trackingAction, getAllTrackings, getTracking, updateTrackingAction };
+export { trackingAction, getAllTrackings, getTracking, updateTrackingAction, getUserTrack };

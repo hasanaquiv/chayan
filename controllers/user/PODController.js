@@ -6,7 +6,7 @@ const index = async (req, res) => {
     let response = "";
     if (search !== "undefined") {
       const searchReg = new RegExp(search, "i");
-      response = await POD.find({docketNumber:searchReg}).sort({ _id: -1 });
+      response = await POD.find({ docketNumber: searchReg }).sort({ _id: -1 });
     } else {
       response = await POD.find().sort({ _id: -1 });
     }
@@ -18,8 +18,16 @@ const index = async (req, res) => {
 };
 
 const store = async (req, res) => {
+  const podFile = req.file ? req.file.filename : null;
+  const { docketNumber, receiverName, receiverMobile, status } = req.body;
   try {
-    const createStore = new POD(req.body);
+    const createStore = new POD({
+      docketNumber,
+      receiverName,
+      receiverMobile,
+      status,
+      podFile,
+    });
     const response = await createStore.save();
     res.status(201).json({ msg: "Add successfully", response });
   } catch (error) {

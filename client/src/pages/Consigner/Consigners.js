@@ -65,7 +65,9 @@ const Shippers = () => {
                     </thead>
                     <tbody>
                       {data !== undefined &&
-                        data.map((value, index) => {
+                        data
+                          .slice(pagination.start, pagination.end)
+                          .map((value, index) => {
                           return (
                             <tr key={index}>
                               <td>

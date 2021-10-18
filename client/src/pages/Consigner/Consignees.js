@@ -84,7 +84,7 @@ const Consignees = () => {
                                 <td>{value.phone}</td>
                                 <td>{value.email}</td>
                                 <td className="d-flex">
-                                  <Link to={`booking-update/${value._id}`}>
+                                  <Link to={`consignee-update/${value._id}`}>
                                     <i className="bx bx-edit-alt font-size-16 align-middle me-0" />
                                   </Link>
                                   <Link

@@ -14,6 +14,9 @@ const PodSchema = new mongoose.Schema(
       type: Number,
       require: true,
     },
+    podFile:{
+      type: String,
+    },
     status: {
       type: String,
       require: true,

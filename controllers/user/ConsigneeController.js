@@ -6,12 +6,14 @@ const index = async (req, res) => {
     let response = "";
     if (search !== "undefined") {
       const searchReg = new RegExp(search, "i");
-      response = await Consignee.find({ companyName: searchReg }).sort({ _id: -1 }); 
-    }else{
+      response = await Consignee.find({ companyName: searchReg }).sort({
+        _id: -1,
+      });
+    } else {
       response = await Consignee.find().sort({ _id: -1 });
-    }    
+    }
     res.status(201).json({ msg: "fetch successfully", response });
-  } catch (error) { 
+  } catch (error) {
     res.status(501).json({ errors: error });
     console.log(error);
   }
@@ -69,12 +71,24 @@ const find = async (req, res) => {
 };
 
 const update = async (req, res) => {
+  const { name,companyName,phone,email,address1,address2,city,state,pincode } = req.body
   try {
     const _id = req.params.id;
-    const data = req.body;
     const response = await Consignee.findByIdAndUpdate(
       _id,
-      { $set: data },
+      {
+        $set: {
+          name: name,
+          companyName: companyName,
+          phone: phone,
+          email: email,
+          address1: address1,
+          address2: address2,
+          city: city,
+          state: state,
+          pincode: pincode,
+        },
+      },
       { new: true }
     );
     res.status(201).json({ msg: "Update successfully", response });

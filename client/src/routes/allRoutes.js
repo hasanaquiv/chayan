@@ -1,9 +1,8 @@
 import React from "react";
-
 import Consignees from "../pages/Consigner/Consignees";
 
 
-import Home from "../pages/Dashboard/Home";
+// import Home from "../pages/Dashboard/Home";
 
 
 import Test from "../pages/test/Test";
@@ -30,6 +29,7 @@ import PODS from "../pages/Manifest/PODS";
 import AddPod from "../pages/POD/AddPod";
 import Billings from "../pages/BIlling/Billings";
 import Billing from "../pages/BIlling/Billing";
+import ConsigneeUpdate from "../pages/Consigner/ConsigneeUpdate";
 
 // Admin
 import Admin from "../pages/Admin/Admin";
@@ -40,6 +40,8 @@ import Login from "../pages/Authentication/Login";
 import Logout from "../pages/Authentication/Logout";
 import Register from "../pages/Authentication/Register";
 import ForgetPwd from "../pages/Authentication/ForgetPassword";
+
+// import UserTrack from "../pages/Front/UserTrack";
 
 // Profile
 import UserProfile from "../pages/Authentication/user-profile";
@@ -63,9 +65,10 @@ const userRoutes = [
   { path: "/tracking-update/:id/:vehicleNumber", component: UpdateTracking },
   { path: "/pods", component: PODS },
   { path: "/add-pod", component: AddPod },
-  { path: "/home/:id", component: Home, }, 
   { path: "/billings", component: Billings, }, 
   { path: "/billing/:id", component: Billing, }, 
+  { path: "/consignee-update/:id", component: ConsigneeUpdate, }, 
+  // { path: "/user-track", component: UserTrack, }, 
 
   //Admin
   { path: "/add-admin", component: Admin },
@@ -76,7 +79,7 @@ const userRoutes = [
   { path: "/profile", component: UserProfile },
 
   // this route should be at the end of all other routes
-  { path: "/", exact: true, component: () => <Redirect to="/dashboard" /> },
+  { path: "/dashboard", exact: true, component: () => <Redirect to="/dashboard" /> },
 ];
 
 const authRoutes = [

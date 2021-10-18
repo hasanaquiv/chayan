@@ -65,7 +65,9 @@ const Manifests = () => {
                     </thead>
                     <tbody>
                       {!loader?data !== undefined &&
-                        data.map((value, index) => {
+                        data
+                          .slice(pagination.start, pagination.end)
+                          .map((value, index) => {
                           const {
                             manifestNumber,
                             manifestOrigin,

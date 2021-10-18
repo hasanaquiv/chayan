@@ -1,4 +1,4 @@
-import { useState,useEffect} from "react";
+import { useState, useEffect } from "react";
 
 import { Link } from "react-router-dom";
 import { Row, Col, Input, Label, Card, Table } from "reactstrap";
@@ -8,14 +8,11 @@ import { useSelector, useDispatch } from "react-redux";
 import Breadcrumbs from "../../components/Common/Breadcrumb";
 import Loader from "../../components/HorizontalLayout/Loader";
 
-
- 
 //Import Email Topbar
-import Toolbar from "../../components/Common/Toolbar"; 
+import Toolbar from "../../components/Common/Toolbar";
 import Pagination from "../../components/Common/Pagination";
 
 const Bookings = () => {
-  
   const dispatch = useDispatch();
   const { bookings, loader } = useSelector((state) => state.bookings);
   const [showPerPage, setShowPerPage] = useState(5);
@@ -66,23 +63,31 @@ const Bookings = () => {
                       </tr>
                     </thead>
                     <tbody>
-                    {data !== undefined && data.map((value, index) => {
-                      return (<tr key={index}>
-                        <td>
-                          <Input type="checkbox" id="chk19" />
-                          <Label htmlFor="chk19" className="toggle" />
-                        </td>
-                        <td>
-                          <Link to={`/print-docket/${value._id}`} className="title">
-                            {value.docketNumber}
-                          </Link>
-                        </td>
-                        <td>{value.consigner}</td>
-                        <td>{value.origin}</td>
-                        <td>{value.destination}</td>
-                        <td>{value.date}</td>
-                      </tr>)
-                    })}
+                      {data !== undefined &&
+                        data
+                          .slice(pagination.start, pagination.end)
+                          .map((value, index) => {
+                            return (
+                              <tr key={index}>
+                                <td>
+                                  <Input type="checkbox" id="chk19" />
+                                  <Label htmlFor="chk19" className="toggle" />
+                                </td>
+                                <td>
+                                  <Link
+                                    to={`/print-docket/${value._id}`}
+                                    className="title"
+                                  >
+                                    {value.docketNumber}
+                                  </Link>
+                                </td>
+                                <td>{value.consigner}</td>
+                                <td>{value.origin}</td>
+                                <td>{value.destination}</td>
+                                <td>{value.date}</td>
+                              </tr>
+                            );
+                          })}
                     </tbody>
                   </Table>
                 </div>

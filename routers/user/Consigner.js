@@ -6,7 +6,7 @@ const {
   findByCode,
   update,
   destroy,
-} = require("../../controllers/user/ConsignerController");
+} = require("../../controllers/user/ConsignerController"); 
 
 const Router = express.Router();
 Router.get("/consigners/:search", index); 

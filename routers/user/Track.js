@@ -1,6 +1,7 @@
 const express = require("express");
 const {
   index,
+  user,
   store,
   find,
   update,
@@ -9,6 +10,7 @@ const {
 
 const Router = express.Router();
 Router.get("/track/:search", index);
+Router.get("/user-track/:search", user);
 Router.post("/track", store);
 Router.get("/track/:id", find);
 Router.patch("/track/:id", update);

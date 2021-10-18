@@ -31,7 +31,7 @@ const Billings = () => {
   };
 
   useEffect(() => {
-    dispatch(getAllBillings(search));
+    dispatch(getAllBillings(search)); 
   }, [dispatch, search]);
 
   const data = billings.response;

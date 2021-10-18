@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { trackingAction, getAllTrackings, getTracking, updateTrackingAction} from "../actions/trackingAction";
+import { trackingAction, getAllTrackings, getTracking, updateTrackingAction, getUserTrack} from "../actions/trackingAction";
 
 const trackingReducer = createSlice({
   name: "trackings",
@@ -9,6 +9,7 @@ const trackingReducer = createSlice({
     response: {},
     trackings: {},
     tracking: {},
+    getTrack: {},
     trackingResponse:{}
   },
   extraReducers: {
@@ -42,6 +43,17 @@ const trackingReducer = createSlice({
       state.tracking = action.payload;
     },
     [getTracking.rejected]: (state, action) => {
+      state.loader = false;
+      state.error = action.payload;
+    },
+    [getUserTrack.pending]: (state, action) => {
+      state.loader = true;
+    },
+    [getUserTrack.fulfilled]: (state, action) => {
+      state.loader = false;
+      state.getTrack = action.payload;
+    },
+    [getUserTrack.rejected]: (state, action) => {
       state.loader = false;
       state.error = action.payload;
     },
