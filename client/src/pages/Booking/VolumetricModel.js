@@ -35,11 +35,11 @@ const VolumetricModel = (props) => {
     } else {
       setTotal((preValue) => [...preValue, area]);
     }
-    alert("Added Successfully")
+    alert("Added Successfully");
     setFormValues({
-      box:"",
+      box: "",
       weight: "",
-    })
+    });
   };
 
   const dataVol = async (id) => {
@@ -61,13 +61,12 @@ const VolumetricModel = (props) => {
     event.preventDefault();
     setModal_small(false);
     props.parentCallback(finalTotal);
+    setTotal([0])
   };
 
   useEffect(() => {
     dataVol(props.consignerVol);
   }, [props.consignerVol]);
-
-  // console.log(finalTotal)
 
   return (
     <>
@@ -182,12 +181,12 @@ const VolumetricModel = (props) => {
                     id="validationCustom05"
                   />
                 </div>
-              </Col>              
+              </Col>
               <Col md={1} className="mb-3">
                 <input
                   type="text"
                   value={vol}
-                    className="form-control"
+                  className="form-control"
                   disabled
                 />
               </Col>
@@ -224,6 +223,18 @@ const VolumetricModel = (props) => {
                   </Button>
                 </div>
               </Col>
+              {/* <Col md="3">
+                <div className="button-items">
+                  <Button
+                    color="primary"
+                    onClick={() => {
+                      setTotal("");
+                    }}
+                  >
+                    Reset
+                  </Button>
+                </div>
+              </Col> */}
             </Row>
           </AvForm>
         </div>
