@@ -1,92 +1,53 @@
-import React, { useState, useEffect } from "react";
 
-import { Row, Col, Card, CardBody, Button } from "reactstrap";
-import { AvForm, AvField } from "availity-reactstrap-validation";
-import axios from "axios";
-import Select from "react-select";
+import React, { useState } from 'react'
+// import './styles.css'
 
-import Checkbox from "./Checkbox";
-import { Catalogues } from "./mock";
-import EnhancedTable from "./EnhancedTable";
-import VolumetricModel from "./VolumetricModel";
+const App = () => {
 
-const Test = () => {
-  const [value, setValue] = useState();
+    const [formValues, setFormValues] = useState([{ name: "", email : ""}])
 
-  const options = [
-    { value: "blues", label: "Blues" },
-    { value: "rock", label: "Rock" },
-    { value: "jazz", label: "Jazz" },
-    { value: "orchestra", label: "Orchestra" },
-  ];
+    let handleChange = (i, e) => {
+        let newFormValues = [...formValues];
+        newFormValues[i][e.target.name] = e.target.value;
+        setFormValues(newFormValues);
+      }
+    
+    let addFormFields = () => {
+        setFormValues([...formValues, { name: "", email: "" }])
+      }
+    
+    let removeFormFields = (i) => {
+        let newFormValues = [...formValues];
+        newFormValues.splice(i, 1);
+        setFormValues(newFormValues)
+    }
+    
+    let handleSubmit = (event) => {
+        event.preventDefault();
+        alert(JSON.stringify(formValues));
+    }
 
-  const callback = (event,value) => {
-    console.log(value);
-  };
+    return (
+        <form  onSubmit={handleSubmit}>
+          {formValues.map((element, index) => (
+            <div className="form-inline" key={index}>
+              <label>Name</label>
+              <input type="text" name="name" value={element.name || ""} onChange={e => handleChange(index, e)} />
+              <label>Email</label>
+              <input type="text" name="email" value={element.email || ""} onChange={e => handleChange(index, e)} />
+              {
+                index ? 
+                  <button type="button"  className="button remove" onClick={() => removeFormFields(index)}>Remove</button> 
+                : null
+              }
+            </div>
+          ))}
+          <div className="button-section">
+              <button className="button add" type="button" onClick={() => addFormFields()}>Add</button>
+              <button className="button submit" type="submit">Submit</button>
+          </div>
+      </form>
+    )
+}
 
-  return (
-    <div className="page-content">
-      {/* <Breadcrumbs title="POD" breadcrumbItem="New Add POD" /> */}
-      <Row>
-        <Col xl="6">
-          <Card>
-            <CardBody>
-              {/* <VolumetricModel parentCallback={callback} /> */}
-              {/* <AvForm className="needs-validation" onSubmit={callback}> */}
-              <AvForm
-                      className="form-horizontal"
-                      onValidSubmit={(e, v) => {
-                        callback(e, v);
-                      }}
-                    >
-                <Row>
-                  {/* <Col md="6">
-                    <div className="mb-3">
-                      <AvField
-                        className="form-control"
-                        type="select"
-                        name="select"
-                        placeholder="Receiver Mobile"
-                        errorMessage=" Enter Receiver Mobile."
-                        validate={{ required: { value: true } }}
-                        id="validationCustom03"
-                        onChange={handle}
-                        // value={value.select}
-                      >
-                        <option>Select Status</option>
-                        <option value="delivered">Delivered</option>
-                        <option value="receiverUnavailable">
-                          Receiver Unavailable
-                        </option>
-                      </AvField>
-                    </div>
-                  </Col> */}
-                  <Col md="6">
-                    <Select
-                      className="form-control"
-                      name="select2"
-                      placeholder="Receiver Mobile"
-                      errorMessage=" Enter Receiver Mobile."
-                      validate={{ required: { value: true } }}
-                      id="validationCustom03"
-                      value={value}
-                      options={options}
-                    />
-                  </Col>
-                </Row>
-                <div className="button-items">
-                  <Button color="primary" type="submit">
-                    {/* {loader ? "Loading..." : "save"}
-                      Save */}
-                    Save
-                  </Button>
-                </div>
-              </AvForm>
-            </CardBody>
-          </Card>
-        </Col>
-      </Row>
-    </div>
-  );
-};
-export default Test;
+export default App

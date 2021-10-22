@@ -30,7 +30,7 @@ const store = async (req, res) => {
 const find = async (req, res) => {  
   try {
     const _id = req.params.id;
-    const responseId = await Booking.findOne({ _id });
+    const responseId = await Booking.findOne({ _id }); 
     const response = await Booking.aggregate([ 
       { $match: { consigner: responseId.consigner, docketNumber:responseId.docketNumber } },
       {
@@ -41,7 +41,16 @@ const find = async (req, res) => {
           as: "consignerDetails",
         },
       },
+      {
+        $lookup: {
+          from: "consignees",
+          localField: "consignee",
+          foreignField: "consigneeCode",
+          as: "consigneeDetails",
+        },
+      },
       {$unwind: '$consignerDetails'},
+      {$unwind: '$consigneeDetails'},
       // { $limit: 1 }
     ]);
     const data = response[0]

@@ -85,7 +85,7 @@ const Billing = (props) => {
                               <td>{value.freightCharge}</td>
                               <td>{value.otherCharge}</td>
                               <td>{value.gst}</td>
-                              <td>{value.total}.00</td>
+                              <td>{Math.ceil(value.total)}.00</td>
                             </tr>
                           );
                         })
@@ -100,9 +100,9 @@ const Billing = (props) => {
                         </td>
                         <td colSpan="10">
                           {data !== undefined &&
-                            data
+                            Math.ceil(data
                               .map((item) => item.total)
-                              .reduce((prev, next) => prev + next)}.00
+                              .reduce((prev, next) => prev + next))}.00
                         </td>
                       </tr>
                     </tfoot>

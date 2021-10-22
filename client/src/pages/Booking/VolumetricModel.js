@@ -6,13 +6,46 @@ import { AvForm, AvField } from "availity-reactstrap-validation";
 import axios from "axios";
 
 const VolumetricModel = (props) => {
-  const [modal_small, setModal_small] = useState(false);  
-  const [vol, setVol] = useState()
+  const [modal_small, setModal_small] = useState(false);
+  const [vol, setVol] = useState();
+  const [formValues, setFormValues] = useState({
+    box: "",
+    length: "",
+    width: "",
+    height: "",
+    weight: "",
+  });
+  const [total, setTotal] = useState([0]);
 
-  const dataVol = async (id) =>{
-    const { data } = await axios.get(`/api/consigner-code/${id}`); 
-      setVol(data.response.volumetric)
-  }
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormValues((preValue) => {
+      return {
+        ...preValue,
+        [name]: value,
+      };
+    });
+  };
+
+  const addFormFields = () => {
+    const { length, width, height, weight } = formValues;
+    const area = Math.ceil((length * width * height) / vol);
+    if (weight > area) {
+      setTotal((preValue) => [...preValue, weight]);
+    } else {
+      setTotal((preValue) => [...preValue, area]);
+    }
+    alert("Added Successfully")
+    setFormValues({
+      box:"",
+      weight: "",
+    })
+  };
+
+  const dataVol = async (id) => {
+    const { data } = await axios.get(`/api/consigner-code/${id}`);
+    setVol(data.response.volumetric);
+  };
 
   function tog_small() {
     setModal_small(!modal_small);
@@ -20,21 +53,21 @@ const VolumetricModel = (props) => {
   }
 
   function removeBodyCss() {
-    document.body.classList.add("no_padding"); 
+    document.body.classList.add("no_padding");
   }
+  const finalTotal = total.reduce((a, b) => Number(a) + Number(b));
 
-
-  const onSubmit = (event,value) => {
+  const onSubmit = (event) => {
     event.preventDefault();
-    const {length, width, height, volume} = value
-    const area = (length*width*height)/volume;
-    setModal_small(false);    
-    props.parentCallback(area);   
+    setModal_small(false);
+    props.parentCallback(finalTotal);
   };
 
   useEffect(() => {
-    dataVol(props.consignerVol)
-  }, [props.consignerVol]); 
+    dataVol(props.consignerVol);
+  }, [props.consignerVol]);
+
+  // console.log(finalTotal)
 
   return (
     <>
@@ -47,9 +80,10 @@ const VolumetricModel = (props) => {
         data-toggle="modal"
         data-target=".bs-example-modal-sm"
       >
-        <i className="bx bx-plus font-size-16 align-middle me-0" />      </button>
+        <i className="bx bx-plus font-size-16 align-middle me-0" />{" "}
+      </button>
       <Modal
-        size="sm"
+        size="lg"
         isOpen={modal_small}
         toggle={() => {
           tog_small();
@@ -74,7 +108,22 @@ const VolumetricModel = (props) => {
         <div className="modal-body">
           <AvForm className="needs-validation" onValidSubmit={onSubmit}>
             <Row>
-              <Col md="6">
+              <Col md="2">
+                <div className="mb-3">
+                  <AvField
+                    name="box"
+                    placeholder="Box"
+                    type="number"
+                    errorMessage="Enter Number Of Box"
+                    className="form-control"
+                    onChange={handleChange}
+                    value={formValues.box}
+                    validate={{ required: { value: true } }}
+                    id="validationCustom01"
+                  />
+                </div>
+              </Col>
+              <Col md="2">
                 <div className="mb-3">
                   <AvField
                     name="length"
@@ -82,13 +131,14 @@ const VolumetricModel = (props) => {
                     type="number"
                     errorMessage="Enter Lenth"
                     className="form-control"
-                    value=""
+                    onChange={handleChange}
+                    value={formValues.length}
                     validate={{ required: { value: true } }}
                     id="validationCustom01"
                   />
                 </div>
               </Col>
-              <Col md="6">
+              <Col md="2">
                 <div className="mb-3">
                   <AvField
                     name="width"
@@ -96,15 +146,14 @@ const VolumetricModel = (props) => {
                     type="number"
                     errorMessage="Enter Width"
                     className="form-control"
-                    value=""
+                    onChange={handleChange}
+                    value={formValues.width}
                     validate={{ required: { value: true } }}
                     id="validationCustom02"
                   />
                 </div>
               </Col>
-            </Row>
-            <Row>
-              <Col md="6">
+              <Col md="2">
                 <div className="mb-3">
                   <AvField
                     name="height"
@@ -112,34 +161,70 @@ const VolumetricModel = (props) => {
                     type="number"
                     errorMessage=" Enter Height."
                     className="form-control"
-                    value=""
+                    onChange={handleChange}
+                    value={formValues.height}
                     validate={{ required: { value: true } }}
                     id="validationCustom03"
                   />
                 </div>
               </Col>
-              <Col md="6">
+              <Col md="2">
                 <div className="mb-3">
                   <AvField
-                    name="volume"
-                    placeholder="Phone Number"
+                    name="weight"
+                    placeholder="Weight"
                     type="number"
-                    errorMessage=" Enter Phone Number."
+                    errorMessage="Weight."
                     className="form-control"
-                    value={vol}
+                    onChange={handleChange}
+                    value={formValues.weight}
                     validate={{ required: { value: true } }}
+                    id="validationCustom05"
+                  />
+                </div>
+              </Col>              
+              <Col md={1} className="mb-3">
+                <input
+                  type="text"
+                  value={vol}
+                    className="form-control"
+                  disabled
+                />
+              </Col>
+              <Col md={1} className="mb-3">
+                <button
+                  type="button"
+                  onClick={() => addFormFields()}
+                  className="btn btn-primary waves-effect"
+                  data-toggle="modal"
+                  data-target=".bs-example-modal-sm"
+                >
+                  <i className="bx bx-plus font-size-16 align-middle me-0" />{" "}
+                </button>
+              </Col>
+            </Row>
+            <Row>
+              <Col md="6">
+                <div className="mb-3">
+                  <input
+                    name="volume"
+                    type="number"
+                    className="form-control"
+                    value={finalTotal}
                     id="validationCustom03"
                     disabled
                   />
                 </div>
               </Col>
+              <Col md="3">
+                <div className="button-items">
+                  <Button color="primary" type="submit">
+                    {/* {loader ? "Loading..." : "Save"} */}
+                    Add
+                  </Button>
+                </div>
+              </Col>
             </Row>
-            <div className="button-items">
-              <Button color="primary" type="submit">
-                {/* {loader ? "Loading..." : "Save"} */}
-                Add
-              </Button>
-            </div>
           </AvForm>
         </div>
       </Modal>

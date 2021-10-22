@@ -12,7 +12,7 @@ const BillingTop = (props) => {
     dispatch(getConsignerCode(props.id));
   }, [dispatch, props.id]);
 
-  console.log(consignerCode)
+  // console.log(consignerCode)
 
   const date = new Date();
   const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];

@@ -23,12 +23,10 @@ import BookingComp from "./BookingComp";
 const Booking = (props) => {
   //for change tooltip display properly
   const [add, setAdd] = useState("");
-  const [compareAdd, setCompareAdd] = useState("");
   const [consigneeValue, setConsigneeValue] = useState(0);
   const [consignerVol, setConsignerVol] = useState("CHC6");
   const { username } = useSelector((state) => state.users);
   const { loader, response } = useSelector((state) => state.bookings);
-  const { consigners } = useSelector((state) => state.consigners);
   const dispatch = useDispatch();
 
   const callback = (count) => {
@@ -41,49 +39,6 @@ const Booking = (props) => {
 
   let area = username.location;
 
-  const [booking, setBooking] = useState({
-    docketNumber: "",
-    origin: "",
-    destination: "",
-    consigner: "",
-    consignee: consigneeValue,
-    actualWeight: "",
-    chargeWeight: "",
-    volumetricWeight: add,
-    invoiceNo: "",
-    invoiceAmount: "",
-    waybill: "",
-    paymentMode: "",
-    pickupBranch: area,
-    remarks: "",
-    handling: false,
-  });
-
-  const data = consigners.response;
-
-  const inputHandle = (event) => {
-    const { name, value } = event.target;
-    if (name === "consigner") {
-      const userExists = data.some((data) => data.consignerCode === value);
-      if (userExists) {
-        setConsignerVol(value);
-      } else {
-      }
-    }
-    if(name === "actualWeight"){
-      if(value < add){
-        setCompareAdd(add)
-      } else{
-        setCompareAdd(value)
-      }
-    }
-    setBooking((preValue) => {
-      return {
-        ...preValue,
-        [name]: value,
-      };
-    });
-  };
   const onSubmit = (event, value) => {
     event.preventDefault();
     // console.log(value)
@@ -96,25 +51,7 @@ const Booking = (props) => {
       props.history.push(`/print-docket/${response.response._id}`);
       window.location.reload();
     }
-
-    setBooking({
-      docketNumber: "",
-      origin: "",
-      destination: "",
-      consigner: "",
-      consignee: consigneeValue,
-      actualWeight: "",
-      chargeWeight: compareAdd,
-      volumetricWeight: add,
-      invoiceNo: "",
-      invoiceAmount: "",
-      waybill: "",
-      paymentMode: "",
-      pickupBranch: area,
-      remarks: "",
-      handling: false,
-    });
-  }, [add, area, compareAdd, consigneeValue, consignerVol, dispatch, props.history, response]);
+  }, [add, area, consigneeValue, consignerVol, dispatch, props.history, response]);
 
   // console.log(compareAdd)
 
@@ -127,14 +64,11 @@ const Booking = (props) => {
             <ToastContainer />
               <BookingComp
                 add={add}
-                // compareAdd={compareAdd}
                 consigneeValue={consigneeValue}
-                // consignerVol={consignerVol}
                 callback={callback}
                 consigneeCallback={consigneeCallback}
                 onSubmit={onSubmit}
                 area={area}
-                // inputHandle={inputHandle}
               />
             </Col>
         </Row>

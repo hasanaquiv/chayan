@@ -12,18 +12,11 @@ const BookingComp = (props) => {
   const dispatch = useDispatch();
   const [consigner, setConsigner] = useState();
   const [consignerVol, setConsignerVol] = useState("CHC6");
-  const [compareAdd, setCompareAdd] = useState("");
   const { consigners } = useSelector((state) => state.consigners);
 
   // calling props ================================
-  const {
-    add,
-    consigneeValue,
-    callback,
-    consigneeCallback,
-    onSubmit,
-    area,
-  } = props;
+  const { add, consigneeValue, callback, consigneeCallback, onSubmit, area } =
+    props;
 
   useEffect(() => {
     dispatch(getAllConsigners());
@@ -100,8 +93,6 @@ const BookingComp = (props) => {
                         type="text"
                         errorMessage="Please provide Consignee Details."
                         className="form-control"
-                        // onChange={inputHandle}
-                        // value={booking.consignee}
                         value={consigneeValue}
                         validate={{ required: { value: true } }}
                         id="validationCustom04"
@@ -117,22 +108,32 @@ const BookingComp = (props) => {
               <Col md="3">
                 <div className="mb-3">
                   <Row>
-                    <Col md={9}>
+                    <Col md={6}>
                       <AvField
-                        name="volumetricWeight"
-                        placeholder="Volumetric weight"
+                        name="box"
+                        placeholder="Box"
                         type="number"
-                        errorMessage="Enter Volumetric Weight."
+                        errorMessage="Enter Number Box."
                         className="form-control"
-                        // onChange={inputHandle}
-                        // value={booking.volumetricWeight}
+                        value={add}
+                        validate={{ required: { value: true } }}
+                        id="validationCustom05"
+                      />
+                    </Col>
+                    <Col md={4}>
+                      <AvField
+                        name="chargeWeight"
+                        placeholder="Weight"
+                        type="number"
+                        errorMessage="Enter Charge Weight."
+                        className="form-control"
                         value={add}
                         validate={{ required: { value: true } }}
                         id="validationCustom05"
                         disabled
                       />
                     </Col>
-                    <Col md={3}>
+                    <Col md={2}>
                       <VolumetricModel
                         parentCallback={callback}
                         consignerVol={consignerVol}
@@ -152,8 +153,6 @@ const BookingComp = (props) => {
                     type="text"
                     errorMessage="Enter Origin"
                     className="form-control"
-                    // onChange={inputHandle}
-                    // value={booking.origin}
                     value=""
                     validate={{ required: { value: true } }}
                     id="validationCustom01"
@@ -170,59 +169,12 @@ const BookingComp = (props) => {
                     type="text"
                     errorMessage="Enter Destination"
                     className="form-control"
-                    // onChange={inputHandle}
-                    // value={booking.destination}
                     value=""
                     validate={{ required: { value: true } }}
                     id="validationCustom02"
                   />
                 </div>
               </Col>
-              {/* Actual Weight */}
-              <Col md="3">
-                <div className="mb-3">
-                  <AvField
-                    name="actualWeight"
-                    placeholder="Actual Weight"
-                    type="number"
-                    errorMessage="Enter Actual Weight."
-                    className="form-control"
-                    onChange={(event) => {
-                      const { value } = event.target;
-                      if (value < add) {
-                        setCompareAdd(add);
-                      } else {
-                        setCompareAdd(value);
-                      }
-                      //   console.log(value)
-                    }}
-                    // value={booking.actualWeight}
-                    value=""
-                    validate={{ required: { value: true } }}
-                    id="validationCustom05"
-                  />
-                </div>
-              </Col>
-              {/* charged Weight */}
-              <Col md="3">
-                <div className="mb-3">
-                  <AvField
-                    name="chargeWeight"
-                    placeholder="Charged Weight"
-                    type="number"
-                    errorMessage="Enter Charge Weight."
-                    className="form-control"
-                    // onChange={inputHandle}
-                    // value={booking.chargeWeight}
-                    value={compareAdd}
-                    validate={{ required: { value: true } }}
-                    id="validationCustom05"
-                    // disabled
-                  />
-                </div>
-              </Col>
-            </Row>
-            <Row>
               {/* Payment Mode */}
               <Col md="3">
                 <div className="mb-3">
@@ -232,8 +184,6 @@ const BookingComp = (props) => {
                     name="paymentMode"
                     placeholder="Payment Mode"
                     errorMessage=" Please Provide Payment Mode."
-                    // onChange={inputHandle}
-                    // value={booking.paymentMode}
                     value=""
                     validate={{ required: { value: true } }}
                     id="validationCustom03"
@@ -254,16 +204,15 @@ const BookingComp = (props) => {
                     type="text"
                     errorMessage=" Enter Pickup State/Branch."
                     className="form-control"
-                    // onChange={inputHandle}
-                    // value={booking.pickupBranch}
                     value={area}
-                    // value="New Delhi"
                     validate={{ required: { value: true } }}
                     id="validationCustom05"
                     disabled
                   />
                 </div>
               </Col>
+            </Row>
+            <Row>
               {/* Invoice Number */}
               <Col md="3">
                 <div className="mb-3">
@@ -273,8 +222,6 @@ const BookingComp = (props) => {
                     type="text"
                     errorMessage=" Enter Invoice Number."
                     className="form-control"
-                    // onChange={inputHandle}
-                    // value={booking.invoiceNo}
                     value=""
                     validate={{ required: { value: true } }}
                     id="validationCustom05"
@@ -290,18 +237,14 @@ const BookingComp = (props) => {
                     type="number"
                     errorMessage=" Enter Invoice Value."
                     className="form-control"
-                    // onChange={inputHandle}
-                    // value={booking.invoiceAmount}
                     value=""
                     validate={{ required: { value: true } }}
                     id="validationCustom05"
                   />
                 </div>
               </Col>
-            </Row>
-            <Row>
               {/* Waybill Number */}
-              <Col md="12">
+              <Col md="6">
                 <div className="mb-3">
                   <AvField
                     name="waybill"
@@ -309,10 +252,8 @@ const BookingComp = (props) => {
                     type="text"
                     errorMessage=" Waybill Number."
                     className="form-control"
-                    // onChange={inputHandle}
-                    // value={booking.waybill}
                     value=""
-                    validate={{ required: { value: true } }}
+                    validate={{ required: { value: false } }}
                     id="validationCustom05"
                   />
                 </div>
@@ -328,8 +269,6 @@ const BookingComp = (props) => {
                     name="remarks"
                     id="address"
                     placeholder="Remarks"
-                    // onChange={inputHandle}
-                    // value={booking.remarks}
                     value=""
                   />
                 </div>
@@ -340,8 +279,6 @@ const BookingComp = (props) => {
                 className="form-check-input"
                 name="handling"
                 type="checkbox"
-                // onChange={inputHandle}
-                // value={!booking.handle}
                 value=""
                 id="invalidCheck"
               />{" "}

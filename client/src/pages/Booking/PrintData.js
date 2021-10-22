@@ -30,6 +30,7 @@ const PrintData = (props) => {
     destination,
     actualWeight,
     chargeWeight,
+    box,
     invoiceNo,
     invoiceAmount,
     waybill,
@@ -37,7 +38,10 @@ const PrintData = (props) => {
     remarks,
     handling,
     consignerDetails,
+    consigneeDetails,
   } = props.data;
+
+  console.log(consignerDetails)
 
   let tFreight = chargeWeight * consignerDetails.freightCharge;
   const charge =
@@ -81,9 +85,6 @@ const PrintData = (props) => {
       window.print();
     }
   }, [response]);
-
-  // console.log(response);
-  // console.log(consignerDetails.customerType)
 
   return (
     <>
@@ -182,7 +183,7 @@ const PrintData = (props) => {
                     <Col sm={12} className="text-center">
                       <Row>
                         <Col sm={6}>
-                          <div style={style.borderReactBottom}>Destination</div>
+                          <div style={style.borderReactBottom}>Destination</div> 
                           <div style={style.borderReactBottom}>
                             <strong>Consignee Company Name:</strong>
                           </div>
@@ -199,12 +200,17 @@ const PrintData = (props) => {
                           </div>
                           <div style={style.borderReactBottom}>
                             {" "}
-                            {consignerDetails.companyName}
+                            {consigneeDetails.companyName}
                           </div>
                           <div style={style.borderReactBottom}>
-                            {consignerDetails.phone}
+                            {consigneeDetails.phone}
                           </div>
-                          <div>Mumbai</div>
+                          <div>
+                            {consigneeDetails.address1}
+                            {consigneeDetails.address2}
+                            <br />
+                            {consigneeDetails.city} {consigneeDetails.state}{" "}
+                            {consigneeDetails.pincode}</div>
                         </Col>
                       </Row>
                     </Col>
@@ -213,7 +219,7 @@ const PrintData = (props) => {
               </Row>
               <Row style={style.borderReactBottom}>
                 <Col sm={4} style={style.borderReactRight}>
-                  No. of PCS.: 1
+                  No. of PCS.: {box}
                 </Col>
                 <Col sm={4} style={style.borderReactRight}>
                   Actual Weight: {actualWeight} KG

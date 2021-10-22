@@ -22,15 +22,11 @@ const BookingSchema = new mongoose.Schema(
       type: String,
       require: true,
     },
-    actualWeight: {
+    box:{      
       type: Number,
       require: true,
     },
     chargeWeight: {
-      type: Number,
-      require: true,
-    },
-    volumetricWeight: {
       type: Number,
       require: true,
     },
