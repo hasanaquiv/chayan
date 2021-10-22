@@ -115,7 +115,7 @@ const BookingComp = (props) => {
                         type="number"
                         errorMessage="Enter Number Box."
                         className="form-control"
-                        value={add}
+                        value=""
                         validate={{ required: { value: true } }}
                         id="validationCustom05"
                       />

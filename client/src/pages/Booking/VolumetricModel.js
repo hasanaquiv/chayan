@@ -118,7 +118,7 @@ const VolumetricModel = (props) => {
                     className="form-control"
                     onChange={handleChange}
                     value={formValues.box}
-                    validate={{ required: { value: true } }}
+                    validate={{ required: { value: false } }}
                     id="validationCustom01"
                   />
                 </div>
@@ -133,7 +133,7 @@ const VolumetricModel = (props) => {
                     className="form-control"
                     onChange={handleChange}
                     value={formValues.length}
-                    validate={{ required: { value: true } }}
+                    validate={{ required: { value: false } }}
                     id="validationCustom01"
                   />
                 </div>
@@ -148,7 +148,7 @@ const VolumetricModel = (props) => {
                     className="form-control"
                     onChange={handleChange}
                     value={formValues.width}
-                    validate={{ required: { value: true } }}
+                    validate={{ required: { value: false } }}
                     id="validationCustom02"
                   />
                 </div>
@@ -163,7 +163,7 @@ const VolumetricModel = (props) => {
                     className="form-control"
                     onChange={handleChange}
                     value={formValues.height}
-                    validate={{ required: { value: true } }}
+                    validate={{ required: { value: false } }}
                     id="validationCustom03"
                   />
                 </div>
@@ -178,7 +178,7 @@ const VolumetricModel = (props) => {
                     className="form-control"
                     onChange={handleChange}
                     value={formValues.weight}
-                    validate={{ required: { value: true } }}
+                    validate={{ required: { value: false } }}
                     id="validationCustom05"
                   />
                 </div>
