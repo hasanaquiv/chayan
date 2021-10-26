@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+
+import jwtDecode from 'jwt-decode';
 import { useSelector, useDispatch } from "react-redux";
 import { Row, Col, Alert, Container } from "reactstrap";
 import { ToastContainer, toast } from "react-toastify";
@@ -45,7 +47,22 @@ const Login = (props) => {
       toast.error(response.msg);
     }
     if (response.token) {
-      props.history.push("/dashboard");
+      switch (response.role) {
+        case 0:
+          props.history.push("/dashboard");
+          break;
+        case 1:
+          props.history.push("/dashboard");
+          break;
+        case 2:
+          props.history.push("/add-pod");
+          break;
+        case 3:
+          props.history.push("/billings");
+          break;
+        default:
+          props.history.push("/dashboard");
+      }
     }
   }, [props.history, error, response.token, response.msg, response]);
 

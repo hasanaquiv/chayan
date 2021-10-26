@@ -33,6 +33,7 @@ const store = async (req, res) => {
       manifestOrigin,
       manifestDestination,
       docketNUmbers: data,
+      start:"Docket Shipped"
     });
     const response = await createStore.save();
     res.status(201).json({ msg: "Add successfully", response });

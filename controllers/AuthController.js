@@ -46,7 +46,7 @@ const Login = async (req, res) => {
 
     const tokenUser = user.username;
     const token = JwtToken(tokenUser);
-    res.status(201).json({ msg: "User Login Successfully", token });
+    res.status(201).json({ msg: "User Login Successfully", token , role:user.role});
   } catch (error) {
     console.log(error);
   }

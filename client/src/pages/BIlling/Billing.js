@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { CardBody, Row, Col, Card, Table } from "reactstrap";
+import { CardBody, Row, Col, Card, Table, Button } from "reactstrap";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -34,20 +34,26 @@ const Billing = (props) => {
             <Card>
               <CardBody>
                 <div className="Billing-title">
-                  <h4 className="float-end font-size-16">Order # 12345</h4>
+                  <h4 className="float-end font-size-16">
+                    <h6>
+                      <strong>Chayan Enterprises Pvt. Ltd.</strong>
+                    </h6>
+                    <h6>Khasra Number 647, A Block, Opposite Chaudhary Farm</h6>
+                    <h6>Rangpuri Extension, New Delhi 110037</h6>
+                  </h4>
                   <div className="mb-4">
                     <img
                       src={
-                        require("../../assets/images/chyan-logistics.png")
+                        require("../../assets/images/chayan-logo-dark.png")
                           .default
                       }
                       alt="icon"
-                      width="120px"
+                      width="180px"
                     />
                   </div>
                 </div>
                 <hr />
-                <BillingTop id={id} />
+                <BillingTop id={id} data={data} />
                 <div className="py-2 mt-3">
                   <h3 className="font-size-15 fw-bold">Order summary</h3>
                 </div>
@@ -66,7 +72,6 @@ const Billing = (props) => {
                         <th>Other Charge</th>
                         <th>GST</th>
                         <th>Total</th>
-                        {/* <th className="text-end">Price</th> */}
                       </tr>
                     </thead>
                     <tbody>
@@ -100,9 +105,12 @@ const Billing = (props) => {
                         </td>
                         <td colSpan="10">
                           {data !== undefined &&
-                            Math.ceil(data
-                              .map((item) => item.total)
-                              .reduce((prev, next) => prev + next))}.00
+                            Math.ceil(
+                              data
+                                .map((item) => item.total)
+                                .reduce((prev, next) => prev + next)
+                            )}
+                          .00
                         </td>
                       </tr>
                     </tfoot>
@@ -110,12 +118,15 @@ const Billing = (props) => {
                 </div>
                 <div className="d-print-none">
                   <div className="float-end">
-                    <Link
+                    <Button
                       to="#"
                       className="btn btn-success waves-effect waves-light"
+                      onClick={() =>{
+                        window.print();
+                      }}
                     >
                       <i className="fa fa-print"></i>
-                    </Link>{" "}
+                    </Button>{" "}
                     <Link
                       to="#"
                       className="btn btn-primary w-md waves-effect waves-light"

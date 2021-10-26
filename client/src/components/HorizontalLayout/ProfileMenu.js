@@ -1,4 +1,7 @@
 import { useState, useEffect } from "react";
+
+import jwtDecode from 'jwt-decode';
+
 import {
   Dropdown,
   DropdownToggle,
@@ -20,6 +23,9 @@ const ProfileMenu = (props) => {
 
   const dispatch = useDispatch();
   const { username, loader, response } = useSelector((state) => state.users);
+
+  const t = localStorage.getItem("authUser");
+  
 
 
   useEffect(() => {

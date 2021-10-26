@@ -9,14 +9,8 @@ const NavPodAdmin = () => {
         id="navigation"
       >
         <ul className="navbar-nav">
-          <li className="nav-item dropdown">
-            <Link className="nav-link" to="/dashboard">
-              Dashboard
-            </Link>
-          </li>
-
-          <li className="nav-item dropdown">
-            <Link className="nav-link dropdown-toggle" to="/add-pod">
+          <li className="nav-item">
+            <Link className="nav-link" to="/add-pod">
               Add POD
             </Link>
           </li>

@@ -26,7 +26,7 @@ const auth = createAsyncThunk("auth", async () => {
     });
     return data.user;
   } catch (err) {
-    console.log(err);
+    console.log(err); 
   }
 });
 

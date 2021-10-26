@@ -35,7 +35,6 @@ const Billings = () => {
   }, [dispatch, search]);
 
   const data = billings.response;
-  // console.log(data)
 
   const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 

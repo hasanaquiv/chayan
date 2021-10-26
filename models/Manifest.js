@@ -17,10 +17,12 @@ const MAnifestSchema = new mongoose.Schema(
     },
     docketNUmbers: [{ docketNUmber: String }],
     date: { type: String, default: finalDate },
+    start: {type: String},
+    end: {type: String}
   },
   { timestamps: true }
 );
 
 const MAnifest = new mongoose.model("MAnifest", MAnifestSchema);
 
-module.exports = MAnifest;
+module.exports = MAnifest; 

@@ -89,10 +89,8 @@ const DocketTrack = () => {
           {
             search !== "" ? 
             <div className="container mb-5 mt-3">
-              {/* {getTrack === undefined && getTrack.vehicleNumber } */}
               <h4>
                 Docket Number :{" "}
-                {/* {getTrack !== undefined && getTrack.vehicleNumber} */}
                 {search}
               </h4>
               <div className="row mt-3">

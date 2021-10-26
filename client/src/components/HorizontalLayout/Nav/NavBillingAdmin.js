@@ -1,9 +1,6 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
-import classname from "classnames";
 
 const NavBIllingAdmin = (props) => {
-  const [dashboard, setdashboard] = useState(false);
   return (
     <>
       <div className="topnav">
@@ -14,131 +11,15 @@ const NavBIllingAdmin = (props) => {
         <ul className="navbar-nav">
             <li className="nav-item dropdown">
               <Link className="nav-link" to="/dashboard">
-                Dashboard4
+                Dashboard
               </Link>
             </li>
 
-            <li className="nav-item dropdown">
-              <Link
-                className="nav-link dropdown-toggle arrow-none"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setdashboard(!dashboard);
-                }}
-                to="view-all"
-              >
-                Booking
-              </Link>
-              <div className={classname("dropdown-menu", { show: dashboard })}>
-                <Link to="/booking-new" className="dropdown-item">
-                  Add new
-                </Link>
-
-                <Link to="/bookings" className="dropdown-item">
-                  View All
-                </Link>
-              </div>
-            </li>
-
-            <li className="nav-item dropdown">
-              <Link
-                className="nav-link dropdown-toggle arrow-none"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setdashboard(!dashboard);
-                }}
-                to="dashboard"
-              >
-                Consigner
-              </Link>
-              <div className={classname("dropdown-menu", { show: dashboard })}>
-                <Link to="/consigner-add" className="dropdown-item">
-                  Add new
-                </Link>
-
-                <Link to="/consigners" className="dropdown-item">
-                  View All
-                </Link>
-              </div>
-            </li>
-
-            <li className="nav-item dropdown">
-              <Link
-                className="nav-link dropdown-toggle arrow-none"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setdashboard(!dashboard);
-                }}
-                to="dashboard"
-              >
-                Manifest
-              </Link>
-              <div className={classname("dropdown-menu", { show: dashboard })}>
-                <Link to="/manifests" className="dropdown-item">
-                  View All
-                </Link>
-
-                <Link to="/tracks" className="dropdown-item">
-                  Track
-                </Link>
-
-                <Link to="/pods" className="dropdown-item">
-                  POD
-                </Link>
-              </div>
-            </li>
-
-            <li className="nav-item dropdown">
-              <Link
-                className="nav-link dropdown-toggle arrow-none"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setdashboard(!dashboard);
-                }}
-                to="dashboard"
-              >
-                Sub Admin
-              </Link>
-              <div className={classname("dropdown-menu", { show: dashboard })}>
-                <Link to="/add-admin" className="dropdown-item">
-                  Add Admin
-                </Link>
-
-                <Link to="/view-admin" className="dropdown-item">
-                  View All
-                </Link>
-              </div>
-            </li>
-
-            <li className="nav-item dropdown">
-              <Link
-                className="nav-link dropdown-toggle arrow-none"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setdashboard(!dashboard);
-                }}
-                to="dashboard"
-              >
-                Extra Pages
-              </Link>
-              <div className={classname("dropdown-menu", { show: dashboard })}>
-                <Link to="/manifest-add" className="dropdown-item">
-                  Add Manifest
-                </Link>
-                <Link to="/tracking" className="dropdown-item">
-                  Tracking
-                </Link>
-                <Link to="/tracking-add" className="dropdown-item">
-                  Tracking Add
-                </Link>
-                <Link to="/tracking-update" className="dropdown-item">
-                  Tracking Update
-                </Link>
-                <Link to="/add-pod" className="dropdown-item">
-                  Add POD
-                </Link>
-              </div>
-            </li>
+            <li className="nav-item">
+            <Link className="nav-link" to="/billings">
+              Billings
+            </Link>
+          </li>
           </ul>
       </nav>
       </div>

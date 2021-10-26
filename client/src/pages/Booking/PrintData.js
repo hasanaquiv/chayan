@@ -41,8 +41,6 @@ const PrintData = (props) => {
     consigneeDetails,
   } = props.data;
 
-  console.log(consignerDetails)
-
   let tFreight = chargeWeight * consignerDetails.freightCharge;
   const charge =
     tFreight +
@@ -289,8 +287,6 @@ const PrintData = (props) => {
                 <Col sm={12} style={style.borderReactTop}>
                   Invoice Amount: {invoiceAmount}
                 </Col>
-                {/* <Col sm={12} style={style.borderReactTop}>COD</Col> */}
-                {/* <Col sm={12} style={style.borderReactTop}>To Pay</Col> */}
               </Row>
             </Col>
           </Row>

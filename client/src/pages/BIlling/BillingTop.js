@@ -5,18 +5,29 @@ import { useSelector, useDispatch } from "react-redux";
 import { getConsignerCode } from "../../store/actions/consignerAction";
 
 const BillingTop = (props) => {
-  const { consignerCode, loader} = useSelector((state) => state.consigners);
+  const { consignerCode, loader } = useSelector((state) => state.consigners);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getConsignerCode(props.id));
   }, [dispatch, props.id]);
 
-  // console.log(consignerCode)
-
   const date = new Date();
-  const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  // console.log(months[props.data.month])
   return (
     <>
       <Row>
@@ -41,7 +52,7 @@ const BillingTop = (props) => {
             <br />
             <strong>Invoice Month</strong>
             <br />
-            Apt. 4B
+            {props.data !== undefined && months[props.data[0].month]}
             <br />
             <strong>Invoice Date</strong>
             <br />
@@ -50,17 +61,6 @@ const BillingTop = (props) => {
           </address>
         </div>
       </Row>
-      {/* <Row>
-        <div className="col-6 mt-3 text-end">
-          <address>
-            <strong>Order Date:</strong>
-            <br />
-            October 16, 2019
-            <br />
-            <br />
-          </address>
-        </div>
-      </Row> */}
     </>
   );
 };
