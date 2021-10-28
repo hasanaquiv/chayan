@@ -36,15 +36,16 @@ const Billing = (props) => {
                 <div className="Billing-title">
                   <h4 className="float-end font-size-16">
                     <h6>
-                      <strong>Chayan Enterprises Pvt. Ltd.</strong>
+                      <strong>Chayan Logistics Pvt. Ltd.</strong>
                     </h6>
                     <h6>Khasra Number 647, A Block, Opposite Chaudhary Farm</h6>
-                    <h6>Rangpuri Extension, New Delhi 110037</h6>
+                    <h6>Rangpuri Extension, New Delhi 110037</h6>                    
+                    <h6>GST - 07AAJCC7802J1ZI</h6>
                   </h4>
                   <div className="mb-4">
                     <img
                       src={
-                        require("../../assets/images/chayan-logo-dark.png")
+                        require("../../asset/images/logo.png")
                           .default
                       }
                       alt="icon"
@@ -85,11 +86,11 @@ const Billing = (props) => {
                               <td>{value.origin}</td>
                               <td>{value.destination}</td>
                               <td>1</td>
-                              <td>{value.actualWeight}</td>
-                              <td>{value.chargeWeight}</td>
-                              <td>{value.freightCharge}</td>
-                              <td>{value.otherCharge}</td>
-                              <td>{value.gst}</td>
+                              <td>{Math.ceil(value.actualWeight)}</td>
+                              <td>{Math.ceil(value.chargeWeight)}</td>
+                              <td>{Math.ceil(value.freightCharge)}</td>
+                              <td>{Math.ceil(value.otherCharge)}</td>
+                              <td>{Math.ceil(value.gst)}</td>
                               <td>{Math.ceil(value.total)}.00</td>
                             </tr>
                           );

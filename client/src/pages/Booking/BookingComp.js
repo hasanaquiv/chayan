@@ -96,6 +96,7 @@ const BookingComp = (props) => {
                         value={consigneeValue}
                         validate={{ required: { value: true } }}
                         id="validationCustom04"
+                        disabled
                       />
                     </Col>
                     <Col md={1}>
@@ -191,7 +192,7 @@ const BookingComp = (props) => {
                     <option>Select Payment Mode</option>
                     <option value="Cash">Cash</option>
                     <option value="Billing">Billing</option>
-                    <option value="To Pay">To Pay</option>
+                    {/* <option value="To Pay">To Pay</option> */}
                   </AvField>
                 </div>
               </Col>

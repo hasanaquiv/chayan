@@ -5,7 +5,7 @@ const userReducer = createSlice({
   name: "users",
   initialState: {
     users: [],
-    loader: true,
+    loader: false,
     error: {},
     response: {},
     username:{}

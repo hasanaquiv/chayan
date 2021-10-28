@@ -12,7 +12,7 @@ const Test = () => {
   }, [list]);
 
   const handleSelectAll = e => {
-    setIsCheckAll(!isCheckAll);
+    setIsCheckAll(!isCheckAll); 
     setIsCheck(list.map(li => li.id));
     if (isCheckAll) {
       setIsCheck([]);

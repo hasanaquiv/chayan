@@ -73,7 +73,7 @@ const userRoutes = [
   //Admin
   { path: "/add-admin", component: Admin },
   { path: "/view-admin", component: Admins },
-  { path: "/test", component: Test },
+  // { path: "/test", component: Test },
 
   // //profile
   { path: "/profile", component: UserProfile },

@@ -83,12 +83,12 @@ const About = () => {
                           Will Add Some Big Names In Logistics Industry In
                           Coming Days
                         </li>
-                        <li>
+                        {/* <li>
                           Aayam Group Providing Services To Companies Like
                           Indigo, Spicejet,namco Industries, Etc.
-                        </li>
+                        </li> */}
                         <li>
-                          Currently Having Strength Of Around 500+ Employeesall
+                          Currently Having Strength Of Around 500+ Employees All
                           Over India
                         </li>
                         <li>Head Office Situated In New Delhi</li>

@@ -53,13 +53,13 @@ const PrintData = (props) => {
   const totalGst = (charge * 18) / 100;
   const total = totalGst + charge;
 
-  const month = new Date().getMonth()
+  const month = new Date().getMonth();
 
   const data = {
     id: props.id,
     docketNumber,
     consigner,
-    consignerName:consignerDetails.companyName,
+    consignerName: consignerDetails.companyName,
     origin,
     destination,
     actualWeight,
@@ -67,7 +67,7 @@ const PrintData = (props) => {
     freightCharge: tFreight,
     otherCharge: charge,
     month,
-    gst:totalGst,
+    gst: totalGst,
     total,
   };
 
@@ -93,20 +93,20 @@ const PrintData = (props) => {
               <Row style={style.borderReactBottom}>
                 <Col sm={6} style={style.borderReactRight}>
                   <Row>
-                    <Col sm={4} className="mt-3">
+                    <Col sm={3} className="mt-3 text-center">
                       <img
                         src={require("../../assets/images/icon.png").default}
                         alt="icon"
-                        width="120px"
+                        width="250px"
                       />
                     </Col>
-                    <Col sm={8}>
+                    <Col sm={9}>
                       <div className="mt-3 mb-3 ml-5">
-                        <h3>Chayan Logistics</h3>
-                        <h6>Chayan Enterprises Pvt. Ltd.</h6>
+                        <h5>Chayan Logistics Pvt. Ltd.</h5>
                         <h6>Khasra Number 647, A Block</h6>
                         <h6> Opposite Chaudhary Farm</h6>
                         <h6>Rangpuri Extension, New Delhi 110037</h6>
+                        <h6>GST - 07AAJCC7802J1ZI</h6>
                       </div>
                     </Col>
                   </Row>
@@ -181,7 +181,7 @@ const PrintData = (props) => {
                     <Col sm={12} className="text-center">
                       <Row>
                         <Col sm={6}>
-                          <div style={style.borderReactBottom}>Destination</div> 
+                          <div style={style.borderReactBottom}>Destination</div>
                           <div style={style.borderReactBottom}>
                             <strong>Consignee Company Name:</strong>
                           </div>
@@ -189,7 +189,7 @@ const PrintData = (props) => {
                             <strong>Consignee Phone:</strong>
                           </div>
                           <div style={style.borderReactBottom}>
-                            <strong>Consigner Address:</strong>
+                            <strong>Consignee Address:</strong>
                           </div>
                         </Col>
                         <Col sm={6}>
@@ -208,7 +208,8 @@ const PrintData = (props) => {
                             {consigneeDetails.address2}
                             <br />
                             {consigneeDetails.city} {consigneeDetails.state}{" "}
-                            {consigneeDetails.pincode}</div>
+                            {consigneeDetails.pincode}
+                          </div>
                         </Col>
                       </Row>
                     </Col>
@@ -309,9 +310,9 @@ const PrintData = (props) => {
         </CardBody>
         <CardFooter>
           <div className="button-items">
-            <Button color="primary" type="submit" onClick={"printBooking"}>
+            {/* <Button color="primary" type="submit" onClick={"printBooking"}>
               Update
-            </Button>
+            </Button> */}
             <Button
               color="primary"
               onClick={() => {
@@ -339,8 +340,7 @@ const PrintData = (props) => {
                   setDynamicDescription("Your imaginary file is safe :)");
                   setDynamicTitle("Cancelled");
                 }}
-              >
-              </SweetAlert>
+              ></SweetAlert>
             ) : null}
           </div>
         </CardFooter>

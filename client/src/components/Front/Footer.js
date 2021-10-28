@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Footer = () => {
   return (
     <>
@@ -9,7 +11,13 @@ const Footer = () => {
               <div className="col-lg-4 col-md-12 col-sm-12">
                 <div className="widget widget_about">
                   <div className="logo-footer">
-                    <img src={require("../../assets/front/images/logo-white.png").default}  alt="logo" />
+                    <img
+                      src={
+                        require("../../assets/front/images/logo-white.png")
+                          .default
+                      }
+                      alt="logo"
+                    />
                   </div>
                   <p className="m-t20 m-b15">
                     <strong>Chayan Enterprises Private limited</strong> , one of
@@ -19,10 +27,9 @@ const Footer = () => {
                   </p>
                   <ul className="dez-social-icon dez-border">
                     <li>
-                      <a
-                        className="fa fa-facebook"
-                        href="javascript:void(0);"
-                      />
+                      <Link href="https://facebook.com">
+                        <i className="fab fa-facebook" />
+                      </Link>
                     </li>
                     <li>
                       <a className="fa fa-twitter" href="javascript:void(0);" />

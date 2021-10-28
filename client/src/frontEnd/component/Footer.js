@@ -13,10 +13,10 @@ const Footer = () => {
                   <div className="logo-footer">
                     <img
                       src={
-                        require("../../asset/images/chyan-logistics.png")
+                        require("../../asset/images/chayan-logistics.png")
                           .default
                       }
-                      alt="chyan-logistics"
+                      alt="chayan logistics"
                     />
                   </div>
                   <p className="m-t20 m-b15">
@@ -27,16 +27,16 @@ const Footer = () => {
                   </p>
                   <ul className="dez-social-icon dez-border">
                     <li>
-                      <Link className="fa fa-facebook" to="" />
+                      <Link className="fab fa-facebook" to="facebook.com" />
                     </li>
                     <li>
-                      <Link className="fa fa-twitter" to="" />
+                      <Link className="fab fa-twitter" to="" />
                     </li>
                     <li>
-                      <Link className="fa fa-linkedin" to="" />
+                      <Link className="fab fa-linkedin" to="" />
                     </li>
                     <li>
-                      <Link className="fa fa-facebook" to="" />
+                      <Link className="fab fa-facebook" to="" />
                     </li>
                   </ul>
                 </div>
@@ -54,12 +54,6 @@ const Footer = () => {
                     </li>
                     <li>
                       <Link to="/logistics">Warehouse</Link>
-                    </li>
-                    <li>
-                      <Link to="/manpower">Manpawer Service</Link>
-                    </li>
-                    <li>
-                      <Link to="/manpower">Security Manpawer</Link>
                     </li>
                   </ul>
                 </div>

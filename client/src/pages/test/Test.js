@@ -1,53 +1,37 @@
+import { useState, useEffect } from "react";
+import { Catalogues } from "./mock";
 
-import React, { useState } from 'react'
-// import './styles.css'
+const Test = () => {
+  const [select, setSelect] = useState();
+  useEffect(() => {
+    setSelect(Catalogues);
+  }, []);
 
-const App = () => {
-
-    const [formValues, setFormValues] = useState([{ name: "", email : ""}])
-
-    let handleChange = (i, e) => {
-        let newFormValues = [...formValues];
-        newFormValues[i][e.target.name] = e.target.value;
-        setFormValues(newFormValues);
+  const inputHandle = (event) => {
+    const { name, value, checked } = event.target;
+    // let tempUser = Catalogues.map(user => user.name === name ? {...user, isChecked: checked}: user)
+    // console.log(value)
+    let array = [];
+    select.forEach((value) =>{
+      if(value.select){
+        array.push(value.id)
       }
-    
-    let addFormFields = () => {
-        setFormValues([...formValues, { name: "", email: "" }])
-      }
-    
-    let removeFormFields = (i) => {
-        let newFormValues = [...formValues];
-        newFormValues.splice(i, 1);
-        setFormValues(newFormValues)
-    }
-    
-    let handleSubmit = (event) => {
-        event.preventDefault();
-        alert(JSON.stringify(formValues));
-    }
+    })
+    console.log(array)
+  }
 
-    return (
-        <form  onSubmit={handleSubmit}>
-          {formValues.map((element, index) => (
-            <div className="form-inline" key={index}>
-              <label>Name</label>
-              <input type="text" name="name" value={element.name || ""} onChange={e => handleChange(index, e)} />
-              <label>Email</label>
-              <input type="text" name="email" value={element.email || ""} onChange={e => handleChange(index, e)} />
-              {
-                index ? 
-                  <button type="button"  className="button remove" onClick={() => removeFormFields(index)}>Remove</button> 
-                : null
-              }
-            </div>
-          ))}
-          <div className="button-section">
-              <button className="button add" type="button" onClick={() => addFormFields()}>Add</button>
-              <button className="button submit" type="submit">Submit</button>
-          </div>
-      </form>
-    )
-}
+  return (
+    <div style={{ margin: "50px" }}>
+      {Catalogues.map((value, index) => {
+        return (
+          <>
+            <input type="checkbox" id={value.id} name={value.name} onChange={inputHandle} value={value.id}/>
+            <label htmlFor={value.id}>{value.name}</label>
+          </>
+        );
+      })}
+    </div>
+  );
+};
 
-export default App
+export default Test;
