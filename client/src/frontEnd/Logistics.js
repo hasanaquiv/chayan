@@ -45,7 +45,7 @@ const Logistics = () => {
                 <h2 className="m-b10"> Latest Service</h2>
                 <div className="ro">
                   <div className="col-12">
-                    <h3>Oparating Locations</h3>
+                    <h3>Operating Locations</h3>
                     <p>
                       Lucknow, Kanpur, Allahabad, Varanasi, Gorakhpur, Jhansi,
                       Delhi, Noida, Ghaziabad, Chandigarh, Ludhiana, Jalandhar.

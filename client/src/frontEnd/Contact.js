@@ -235,29 +235,6 @@ const Contact = () => {
                     <div className="icon-content">
                       <h6 className="text-uppercase m-b0 dez-tilte">Address</h6>
                       <p>
-                        131/128 Gopal Nagar <br /> Near,Nawrang Sweet House,
-                        <br /> Agra Machine, <br />
-                        Kanpur Nager, Pin-208011
-                      </p>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div className="col-xl-4 col-lg-4">
-              <div className="p-a30 bg-white m-b30">
-                <h3>Contact Info</h3>
-                <ul className="no-margin">
-                  <li className="icon-bx-wraper left m-b30">
-                    <div className="icon-bx-xs bg-primary">
-                      {" "}
-                      <Link href="" className="icon-cell">
-                        <i className="fa fa-map-marker" />
-                      </Link>{" "}
-                    </div>
-                    <div className="icon-content">
-                      <h6 className="text-uppercase m-b0 dez-tilte">Address</h6>
-                      <p>
                         House No-566 Shiwani Nagar,
                         <br /> Near Sr Hotel, <br />
                         Saheed Path, <br />
