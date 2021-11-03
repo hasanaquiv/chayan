@@ -46,7 +46,8 @@ const store = async (req, res) => {
   const data = manifestNUmberArr.map((value) => {
     return { manifestNUmber: value };
   });
-  const locationData = { location: locations };
+  const locationData = { location: locations, 
+    start:"Shipped" };
   try {
     const createStore = new Track({
       driverName,
@@ -57,7 +58,7 @@ const store = async (req, res) => {
     const response = await createStore.save();
     res.status(201).json({ msg: "Add successfully", response });
   } catch (error) {
-    res.status(501).json({ errors: error });
+    res.status(501).json({ errors: error }); 
     console.log(error);
   }
 };

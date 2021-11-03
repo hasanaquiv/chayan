@@ -72,12 +72,12 @@ const ProfileMenu = (props) => {
           <i className="mdi mdi-chevron-down d-none d-xl-inline-block"></i>{" "}
         </DropdownToggle>
         <DropdownMenu className="dropdown-menu-end">
-          <DropdownItem tag="a" href="/profile">
+          {/* <DropdownItem tag="a" href="/profile">
             {" "}
             <i className="bx bx-user font-size-16 align-middle me-1"></i> View
             Profile{" "}
-          </DropdownItem>
-          <DropdownItem tag="a" href="#">
+          </DropdownItem> */}
+          <DropdownItem tag="a" href="/password">
             <i className="bx bx-wrench font-size-16 align-middle me-1"></i>{" "}
             Password
           </DropdownItem>

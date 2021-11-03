@@ -11,8 +11,9 @@ import { getAllConsigners } from "../../store/actions/consignerAction";
 const BookingComp = (props) => {
   const dispatch = useDispatch();
   const [consigner, setConsigner] = useState();
-  const [consignerVol, setConsignerVol] = useState("CHC6");
+  const [consignerVol, setConsignerVol] = useState("CHC1");
   const { consigners } = useSelector((state) => state.consigners);
+  const { username } = useSelector((state) => state.users);
 
   // calling props ================================
   const { add, consigneeValue, callback, consigneeCallback, onSubmit, area } =
@@ -23,6 +24,7 @@ const BookingComp = (props) => {
   }, [dispatch]);
 
   const data = consigners.response;
+  console.log(username)
 
   return (
     <>

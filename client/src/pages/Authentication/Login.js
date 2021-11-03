@@ -66,8 +66,6 @@ const Login = (props) => {
     }
   }, [props.history, error, response.token, response.msg, response]);
 
-  // console.log(response)
-
   return (
     <>
       <div className="home-btn d-none d-sm-block">

@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { podAction, getAllPods } from "../actions/podAction";
+import { podAction, getAllPods,getPod } from "../actions/podAction";
 
 const podReducer = createSlice({
   name: "users",
@@ -7,7 +7,8 @@ const podReducer = createSlice({
     loader: false,
     error: {}, 
     response: {},
-    pods:{}
+    pods:{},
+    pod:{}
   },
   extraReducers: {
     [podAction.pending]: (state, action) => {
@@ -29,6 +30,17 @@ const podReducer = createSlice({
       state.pods = action.payload;
     },
     [getAllPods.rejected]: (state, action) => {
+      state.loader = false;
+      state.errors = action.payload;
+    },
+    [getPod.pending]: (state, action) => {
+      state.loader = true;
+    },
+    [getPod.fulfilled]: (state, action) => {
+      state.loader = false;
+      state.pod = action.payload;
+    },
+    [getPod.rejected]: (state, action) => {
       state.loader = false;
       state.errors = action.payload;
     },

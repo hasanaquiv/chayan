@@ -46,7 +46,9 @@ const Login = async (req, res) => {
 
     const tokenUser = user.username;
     const token = JwtToken(tokenUser);
-    res.status(201).json({ msg: "User Login Successfully", token , role:user.role});
+    res
+      .status(201)
+      .json({ msg: "User Login Successfully", token, role: user.role });
   } catch (error) {
     console.log(error);
   }
@@ -66,4 +68,25 @@ const Home = async (req, res) => {
   }
 };
 
-module.exports = { Home, Register, Login };
+const Password = async (req, res) => {
+  const { password } = req.body;
+  const hash = await bcrypt.hash(password, 10);
+  try {
+    const _id = req.params.id;
+    const response = await User.findByIdAndUpdate(
+      _id,
+      {
+        $set: {
+          password: hash
+        },
+      },
+      { new: true }
+    );
+    console.log(response);
+    res.json({ msg: "Password Update Successful" });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+module.exports = { Home, Register, Login, Password };

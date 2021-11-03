@@ -1,11 +1,15 @@
 import React from "react";
+
+import Password from "../pages/Authentication/Password";
+
+
 import Consignees from "../pages/Consigner/Consignees";
 
 
 // import Home from "../pages/Dashboard/Home";
 
 
-import Test from "../pages/test/Test";
+// import Test from "../pages/test/Test";
 
 import { Redirect } from "react-router-dom";
 
@@ -26,6 +30,7 @@ import Tracking from "../pages/Manifest/Tracking";
 import AddTracking from "../pages/Manifest/AddTracking";
 import UpdateTracking from "../pages/Manifest/UpdateTracking";
 import PODS from "../pages/Manifest/PODS";
+import Pod from "../pages/POD/Pod";
 import AddPod from "../pages/POD/AddPod";
 import Billings from "../pages/BIlling/Billings";
 import Billing from "../pages/BIlling/Billing";
@@ -64,6 +69,7 @@ const userRoutes = [
   { path: "/tracking-add", component: AddTracking },
   { path: "/tracking-update/:id/:vehicleNumber", component: UpdateTracking },
   { path: "/pods", component: PODS },
+  { path: "/pod/:id", component: Pod },
   { path: "/add-pod", component: AddPod },
   { path: "/billings", component: Billings, }, 
   { path: "/billing/:id", component: Billing, }, 
@@ -77,6 +83,7 @@ const userRoutes = [
 
   // //profile
   { path: "/profile", component: UserProfile },
+  { path: "/password", component: Password },
 
   // this route should be at the end of all other routes
   { path: "/dashboard", exact: true, component: () => <Redirect to="/dashboard" /> },

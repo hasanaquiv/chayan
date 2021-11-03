@@ -83,7 +83,7 @@ const Logistics = () => {
                     </div>
                   </div>
                   <div className="col-lg-4 col-md-4 col-sm-12 m-b30">
-                    <div className="dez-box">
+                    <div className="dez-box"> 
                       <div className="dez-media">
                         {" "}
                         <Link to="/logistics">

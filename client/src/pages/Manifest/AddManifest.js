@@ -84,7 +84,7 @@ const AddManifest = () => {
                           className="form-control"
                           onChange={inputHandle}
                           value={manifest.manifestDestination}
-                          validate={{ required: { value: true } }}
+                          validate={{ required: { value: true } }} 
                           id="validationCustom02"
                         />
                       </div>

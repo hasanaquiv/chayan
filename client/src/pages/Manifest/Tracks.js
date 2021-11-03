@@ -59,7 +59,7 @@ const Tracks = () => {
                         <th>#</th>
                         <th>Vehicle Number</th>
                         <th>Driver Name</th>
-                        <th>Date</th>
+                        <th>Update</th>
                       </tr>
                     </thead>
                     <tbody>

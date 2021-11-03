@@ -50,7 +50,7 @@ const Tracking = (props) => {
                     <div className="col-sm-4 mb-5">
                       {tracking.vehicleNumber}
                     </div>
-                    <div className="col-sm-4 mb-5">{(tracking.driverName)}</div>
+                    <div className="col-sm-4 mb-5">{tracking.driverName}</div>
                   </Row>
                   <Row>
                     {!loader ? (
@@ -71,6 +71,7 @@ const Tracking = (props) => {
                                 <div className="wrapper-line bg-light"></div>
                               </div>
                               <div className="bg-light p-4 rounded mx-3">
+                              <p>{value.start}</p>
                                 <h5>{value.location}</h5>
                               </div>
                             </div>

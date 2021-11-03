@@ -118,7 +118,7 @@ const UpdateTracking = (props) => {
                   </Row>
                   <div className="button-items">
                     <Button color="primary" type="submit">
-                      {loader ? "Loading..." : "save"}
+                      {loader ? "Loading..." : "Update"}
                     </Button>
                   </div>
                 </AvForm>

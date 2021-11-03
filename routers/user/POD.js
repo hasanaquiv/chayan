@@ -11,7 +11,8 @@ const {
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "./uploads");
+    // cb(null, "./uploads");
+    cb(null, "./client/src/uploads");
   },
   filename: function (req, file, cb) {
     cb(null, file.originalname);
@@ -23,7 +24,7 @@ const upload = multer({
 });
 
 const Router = express.Router();
-Router.get("/pod/:search", index);
+Router.get("/pods/:search", index);
 Router.post("/pod", upload.single("podFile"), store);
 Router.get("/pod/:id", find);
 Router.patch("/pod/:id", update);

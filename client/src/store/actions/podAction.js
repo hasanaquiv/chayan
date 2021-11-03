@@ -12,11 +12,20 @@ const podAction = createAsyncThunk("pod", async (formData) => {
 
 const getAllPods = createAsyncThunk("getAllPods", async (search) => {
   try {
-    const { data } = await axios.get(`/api/pod/${search}`);
+    const { data } = await axios.get(`/api/pods/${search}`);
     return data;
   } catch (error) {
     return error;
   }
 });
 
-export { podAction, getAllPods };
+const getPod = createAsyncThunk("getPod", async (id) => {
+  try {
+    const { data } = await axios.get(`/api/pod/${id}`);
+    return data.response;
+  } catch (error) {
+    return error;
+  }
+});
+
+export { podAction, getAllPods,getPod };

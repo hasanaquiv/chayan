@@ -18,8 +18,11 @@ import { userRoutes, authRoutes } from "./routes/allRoutes";
 // Import all middleware
 import Authmiddleware from "./routes/middleware/Authmiddleware"; 
 
+
 // Import scss
 import "./assets/scss/theme.scss";
+
+import "./custom.css"
 
 const App = (props) => {
   return (

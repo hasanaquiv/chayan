@@ -30,7 +30,7 @@ const AddPod = () => {
     const { name, value } = event.target;
     if (value === "receiverUnavailable") {
       setAdd(0);
-    } else {
+    } else if(value === "delivered") {
       setAdd(1);
     }
     setPod((preValue) => {
@@ -50,8 +50,9 @@ const AddPod = () => {
     });
   };
 
-  const onSubmit = (event) => {
+  const onSubmit = (event, value) => {
     event.preventDefault();
+    if(pod.status !== "receiverUnavailable"){
     const formData = new FormData();
     formData.append("podFile", pod.file,pod.file.name);
     formData.append("docketNumber", pod.docketNumber)
@@ -59,6 +60,9 @@ const AddPod = () => {
     formData.append("receiverMobile", pod.receiverMobile)
     formData.append("status", pod.status)
     dispatch(podAction(formData));
+    } else {
+      dispatch(podAction(pod));
+    }
   };
 
   useEffect(() => {
@@ -86,9 +90,7 @@ const AddPod = () => {
             <Card>
               <CardBody>
                 <AvForm className="needs-validation" onSubmit={onSubmit}>
-                  {add === 1 ? (
-                    <Row>
-                      <Col md="6">
+                      <Col md="12">
                         <div className="mb-3">
                           <AvField
                             name="docketNumber"
@@ -103,6 +105,8 @@ const AddPod = () => {
                           />
                         </div>
                       </Col>
+                  {add === 1 ? (
+                    <Row>
                       <Col md="6">
                         <div className="mb-3">
                           <AvField
@@ -170,21 +174,6 @@ const AddPod = () => {
                     </Row>
                   ) : (
                     <>
-                      <Col md="6">
-                        <div className="mb-3">
-                          <AvField
-                            name="docketNumber"
-                            placeholder="Docket Number"
-                            type="text"
-                            errorMessage="Enter Docket Number"
-                            className="form-control"
-                            onChange={inputHandle}
-                            value={pod.docketNumber}
-                            validate={{ required: { value: true } }}
-                            id="validationCustom01"
-                          />
-                        </div>
-                      </Col>
                       <Col md="6">
                         <div className="mb-3">
                           <AvField

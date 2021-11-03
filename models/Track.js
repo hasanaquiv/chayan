@@ -11,10 +11,16 @@ const TrackSchema = new mongoose.Schema(
       type: String,
       require: true,
     },
-    locations: [{ location: String, date: { type: String, default: finalDate }  }],
-    manifestNUmbers: [
-      { manifestNUmber: String},
+    locations: [
+      {
+        location: String,
+        start: {
+          type: String,
+        },
+        date: { type: String, default: finalDate },
+      },
     ],
+    manifestNUmbers: [{ manifestNUmber: String }],
   },
   { timestamps: true }
 );

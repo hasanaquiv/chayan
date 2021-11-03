@@ -8,10 +8,9 @@ const loginAction = createAsyncThunk("Login", async (values) => {
       headers: {
         "Content-Type": "application/json",
       },
-      data:values,
+      data: values,
     });
     localStorage.setItem("authUser", JSON.stringify(data.token));
-    console.log(data)
     return data;
   } catch (error) {
     return error;
@@ -26,7 +25,7 @@ const auth = createAsyncThunk("auth", async () => {
     });
     return data.user;
   } catch (err) {
-    console.log(err); 
+    console.log(err);
   }
 });
 
@@ -34,4 +33,21 @@ const logoutAction = createAsyncThunk("Logout", () => {
   localStorage.removeItem("authUser");
 });
 
-export { loginAction, logoutAction, auth };
+const passwordChange = createAsyncThunk("passwordChange", async (value) => {
+  const {id, password} = value
+  try {
+    const { data } = await axios(`/api/password/${id}`, {
+      method: "patch",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: {"password":password},
+    });
+    console.log(data)
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+export { loginAction, logoutAction, auth, passwordChange };

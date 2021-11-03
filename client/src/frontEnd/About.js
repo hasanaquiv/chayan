@@ -9,11 +9,10 @@ const bg4 = require("../asset/images/background/bg4.jpg").default;
 const About = () => {
   return (
     <>
-    <div className="page-wraper">
-      <div id="loading-area" />
-      {/* Header */}
-      <Header />
-      <div>
+      <div className="page-wraper">
+        <div id="loading-area" />
+        {/* Header */}
+        <Header />
         {/* inner page banner */}
         <div
           className="dez-bnr-inr overlay-black-middle"
@@ -21,7 +20,7 @@ const About = () => {
         >
           <div className="container">
             <div className="dez-bnr-inr-entry">
-              <h1 className="text-white">About Us 2</h1>
+              <h1 className="text-white">About Us</h1>
             </div>
           </div>
         </div>
@@ -31,14 +30,14 @@ const About = () => {
           <div className="container">
             <ul className="list-inline">
               <li>
-                <Link href="/">Home</Link>
+                <Link to="/">Home</Link>
               </li>
-              <li>About Us</li>
+              <li>About</li>
             </ul>
           </div>
         </div>
         {/* Breadcrumb row END */}
-        {/* contact area */}
+        {/* About area */}
         <div className="content-area">
           {/* About Company */}
           <div className="container">
@@ -160,225 +159,11 @@ const About = () => {
             </div>
           </div>
           {/* About Company END */}
-          {/* counter */}
-          <div
-            className="section-full aon-our-services bg-gray bg-img-fix p-t60 p-b30  overlay-black-middle"
-            style={{ backgroundImage: "url(images/background/bg2.jpg)" }}
-          >
-            <div className="container">
-              <div className="row">
-                <div className="col-lg-3 col-md-6 col-sm-6 m-b30">
-                  <div className="p-a30 text-white text-center border-3">
-                    <div className="icon-lg m-b20">
-                      <div className="icon-cell text-white">
-                        {" "}
-                        <i className="fa fa-building-o" />{" "}
-                      </div>
-                    </div>
-                    <div className="counter font-26 font-weight-800 text-primary m-b5">
-                      1035
-                    </div>
-                    <span>Completed Project</span>
-                  </div>
-                </div>
-                <div className="col-lg-3 col-md-6 col-sm-6 m-b30">
-                  <div className="p-a30 text-white text-center border-3">
-                    <div className="icon-lg m-b20">
-                      <div className="icon-cell text-white">
-                        {" "}
-                        <i className="fa fa-male" />{" "}
-                      </div>
-                    </div>
-                    <div className="counter font-26 font-weight-800 text-primary m-b5">
-                      1124
-                    </div>
-                    <span>Active Experts</span>
-                  </div>
-                </div>
-                <div className="col-lg-3 col-md-6 col-sm-6 m-b30">
-                  <div className="p-a30 text-white text-center border-3">
-                    <div className="icon-lg m-b20">
-                      <div className="icon-cell text-white">
-                        {" "}
-                        <i className="fa fa-male" />{" "}
-                      </div>
-                    </div>
-                    <div className="counter font-26 font-weight-800 text-primary m-b5">
-                      834
-                    </div>
-                    <span>Happy Clients</span>
-                  </div>
-                </div>
-                <div className="col-lg-3 col-md-6 col-sm-6 m-b30">
-                  <div className="p-a30 text-white text-center border-3">
-                    <div className="icon-lg m-b20">
-                      <div className="icon-cell text-white">
-                        {" "}
-                        <i className="fa fa-area-chart" />{" "}
-                      </div>
-                    </div>
-                    <div className="counter font-26 font-weight-800 text-primary m-b5">
-                      538
-                    </div>
-                    <span>Developer Hand</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          {/* Counter END*/}
-          {/* Team member */}
-          <div className="section-full bg-white p-t70 p-b40">
-            <div className="container">
-              <div className="section-head text-center">
-                <h2 className="h2">Meet Our Team</h2>
-                <div className="dez-separator bg-primary" />
-              </div>
-              <div className="section-content">
-                <div className="row">
-                  <div className="col-lg-4 col-md-4 m-b30">
-                    <div className="dez-box">
-                      <div className="dez-media">
-                        {" "}
-                        <Link href="">
-                          <img
-                            src={
-                              require("../asset/images/testimonials/male.png")
-                                .default
-                            }
-                            alt="male"
-                          />
-                        </Link>{" "}
-                      </div>
-                      <div className="dez-info p-a20 p-t40 border-1">
-                        <h4 className="dez-title m-tb0">
-                          <Link href="">Vinod Singh</Link>
-                        </h4>
-                        <div className="bg-primary skew-content-box">
-                          <ul className="dez-social-icon">
-                            <li>
-                              <Link className="fa fa-facebook" href="" />
-                            </li>
-                            <li>
-                              <Link className="fa fa-twitter" href="" />
-                            </li>
-                            <li>
-                              <Link className="fa fa-linkedin" href="" />
-                            </li>
-                            <li>
-                              <Link className="fa fa-google-plus" href="" />
-                            </li>
-                            <li>
-                              <Link className="fa fa-pinterest-p" href="" />
-                            </li>
-                            <li>
-                              <Link className="fa fa-instagram" href="" />
-                            </li>
-                          </ul>
-                        </div>
-                        <span>Cheif Excutive Officer</span>
-                        {/* <p class="m-t10 m-b0">Lorem ipsum dolor Fusce varius euismod lacus eget feugiat rorem ipsum dolor consectetur Fusce varius. </p> */}
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-lg-4 col-md-4 m-b30">
-                    <div className="dez-box">
-                      <div className="dez-media">
-                        {" "}
-                        <Link href="">
-                          <img
-                            src={
-                              require("../asset/images/testimonials/male.png")
-                                .default
-                            }
-                            alt="male"
-                          />
-                        </Link>{" "}
-                      </div>
-                      <div className="dez-info p-a20 p-t40 border-1">
-                        <h4 className="dez-title m-tb0">
-                          <Link href="">Ravi Singh</Link>
-                        </h4>
-                        <div className="bg-primary skew-content-box">
-                          <ul className="dez-social-icon">
-                            <li>
-                              <Link className="fa fa-facebook" href="" />
-                            </li>
-                            <li>
-                              <Link className="fa fa-twitter" href="" />
-                            </li>
-                            <li>
-                              <Link className="fa fa-linkedin" href="" />
-                            </li>
-                            <li>
-                              <Link className="fa fa-google-plus" href="" />
-                            </li>
-                            <li>
-                              <Link className="fa fa-pinterest-p" href="" />
-                            </li>
-                            <li>
-                              <Link className="fa fa-instagram" href="" />
-                            </li>
-                          </ul>
-                        </div>
-                        <span>Cheif Operating Officer</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-lg-4 col-md-4 m-b30">
-                    <div className="dez-box">
-                      <div className="dez-media">
-                        {" "}
-                        <Link href="">
-                          <img
-                            src={
-                              require("../asset/images/testimonials/male.png")
-                                .default
-                            }
-                            alt="male"
-                          />
-                        </Link>{" "}
-                      </div>
-                      <div className="dez-info p-a20 p-t40 border-1">
-                        <h4 className="dez-title m-tb0">
-                          <Link href="">Sanjay Dwivedi</Link>
-                        </h4>
-                        <div className="bg-primary skew-content-box">
-                          <ul className="dez-social-icon">
-                            <li>
-                              <Link className="fa fa-facebook" href="" />
-                            </li>
-                            <li>
-                              <Link className="fa fa-twitter" href="" />
-                            </li>
-                            <li>
-                              <Link className="fa fa-linkedin" href="" />
-                            </li>
-                            <li>
-                              <Link className="fa fa-google-plus" href="" />
-                            </li>
-                            <li>
-                              <Link className="fa fa-pinterest-p" href="" />
-                            </li>
-                            <li>
-                              <Link className="fa fa-instagram" href="" />
-                            </li>
-                          </ul>
-                        </div>
-                        <span>Chief Finance Officer</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          {/* Team member */}
         </div>
-        {/* contact area  END */}
-      </div>{/* Footer */}
-      <Footer />
-      {/* Footer END*/}        
+        {/* About area  END */}
+        {/* Footer */}
+        <Footer />
+        {/* Footer END*/}
         <button className="scroltop fa fa-arrow-up" />
       </div>
     </>

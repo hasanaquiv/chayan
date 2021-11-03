@@ -76,7 +76,7 @@ const PODS = () => {
                                 <Label htmlFor="chk19" className="toggle" />
                               </td>
                               <td>
-                                <Link to={index} className="title">
+                                <Link to={`/pod/${value._id}`} className="title">
                                   {value.docketNumber}
                                 </Link>
                               </td>

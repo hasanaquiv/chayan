@@ -537,7 +537,7 @@ const Home = () => {
         {/* Testimonials */}
         <div className="section-full bg-img-fix p-t70 p-b40">
           <div className="container">
-            <div className="section-head text-center text-white">
+            <div className="section-head text-center">
               <h2 className="h2"> What Are Customer Saying</h2>
               <div className="dez-separator bg-primary" />
             </div>

@@ -1,14 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { loginAction, auth } from "../actions/loginAction";
+import { loginAction, auth, passwordChange } from "../actions/loginAction";
 
-const userReducer = createSlice({
+const userReducer = createSlice({ 
   name: "users",
   initialState: {
     users: [],
     loader: false,
     error: {},
     response: {},
-    username:{}
+    username:{},
+    passwordSave:{}
   },
   reducers: {
     addUser: (state, action) => {
@@ -41,6 +42,17 @@ const userReducer = createSlice({
       state.username = action.payload;
     },
     [auth.rejected]: (state, action) => {
+      state.loader = false;
+      state.errors = action.payload;
+    },
+    [passwordChange.pending]: (state, action) => {
+      state.loader = true;
+    },
+    [passwordChange.fulfilled]: (state, action) => {
+      state.loader = false;
+      state.passwordSave = action.payload;
+    },
+    [passwordChange.rejected]: (state, action) => {
       state.loader = false;
       state.errors = action.payload;
     },

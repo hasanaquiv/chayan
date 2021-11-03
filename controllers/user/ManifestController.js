@@ -26,14 +26,13 @@ const store = async (req, res) => {
   try {
     const findId = await Manifest.findOne().sort({ _id: -1 });
     const oldManifestNumber = findId.manifestNumber;
-    const manifestInc = oldManifestNumber.substr(6);
+    const manifestInc = oldManifestNumber.substr(3);
     const manifestData = `CHM${Number(manifestInc) + Number(1)}`;
     const createStore = new Manifest({
       manifestNumber: manifestData,
       manifestOrigin,
       manifestDestination,
       docketNUmbers: data,
-      start:"Docket Shipped"
     });
     const response = await createStore.save();
     res.status(201).json({ msg: "Add successfully", response });
@@ -101,3 +100,4 @@ const destroy = async (req, res) => {
 };
 
 module.exports = { index, store, find, update, destroy };
+ 

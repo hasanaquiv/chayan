@@ -1,15 +1,7 @@
 import { useState, useEffect } from "react";
 
-import { Row, Col, Card, CardBody, Button } from "reactstrap";
-import { AvForm, AvField } from "availity-reactstrap-validation";
+import { Row, Col} from "reactstrap";
 import { useSelector, useDispatch } from "react-redux";
-
-import { ToastContainer, toast } from "react-toastify";
-import Select from "react-select";
-
-import BookingModel from "./BookingModel";
-import VolumetricModel from "./VolumetricModel";
-// import InputField from "./InputField";
 
 import "react-toastify/dist/ReactToastify.css";
 
@@ -17,16 +9,14 @@ import "react-toastify/dist/ReactToastify.css";
 import Breadcrumbs from "../../components/Common/Breadcrumb";
 // import LatestBooking from "../Dashboard/LatestBooking";
 import { bookingAction } from "../../store/actions/bookingAction";
-import { getAllConsigners } from "../../store/actions/consignerAction";
 import BookingComp from "./BookingComp";
 
 const Booking = (props) => {
   //for change tooltip display properly
   const [add, setAdd] = useState("");
   const [consigneeValue, setConsigneeValue] = useState(0);
-  const [consignerVol, setConsignerVol] = useState("CHC6");
   const { username } = useSelector((state) => state.users);
-  const { loader, response } = useSelector((state) => state.bookings);
+  const { response } = useSelector((state) => state.bookings);
   const dispatch = useDispatch();
 
   const callback = (count) => {
@@ -41,7 +31,6 @@ const Booking = (props) => {
 
   const onSubmit = (event, value) => {
     event.preventDefault();
-    // console.log(value)
     dispatch(bookingAction(value));
   };
 
@@ -51,7 +40,7 @@ const Booking = (props) => {
       props.history.push(`/print-docket/${response.response._id}`);
       window.location.reload();
     }
-  }, [add, area, consigneeValue, consignerVol, dispatch, props.history, response]);
+  }, [add, area, consigneeValue, dispatch, props.history, response]);
 
   // console.log(compareAdd)
 
@@ -61,7 +50,6 @@ const Booking = (props) => {
         <Breadcrumbs title="Booking" breadcrumbItem="New Booking" />
         <Row>
           <Col xl="12">
-            <ToastContainer />
               <BookingComp
                 add={add}
                 consigneeValue={consigneeValue}
