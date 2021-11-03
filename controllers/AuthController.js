@@ -19,7 +19,7 @@ const Register = async (req, res) => {
       password: hash,
     });
     const user = await saveUser.save();
-
+ 
     if (!user) {
       return res.status(402).json({ errors: "Something went wrong" });
     }
@@ -35,7 +35,7 @@ const Register = async (req, res) => {
 const Login = async (req, res) => {
   const { username, location, password } = req.body;
   try {
-    const user = await User.findOne({ username, location });
+    const user = await User.findOne({ username });
     if (!user) {
       return res.json({ msg: "INvalid User" });
     }
@@ -44,11 +44,11 @@ const Login = async (req, res) => {
       return res.json({ msg: "INvalid User And Password" });
     }
 
+    if(verify){      
     const tokenUser = user.username;
     const token = JwtToken(tokenUser);
-    res
-      .status(201)
-      .json({ msg: "User Login Successfully", token, role: user.role });
+    res.status(201).json({ msg: "User Login Successfully", token, role: user.role });
+    } 
   } catch (error) {
     console.log(error);
   }

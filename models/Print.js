@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
 const printSchema = new mongoose.Schema({
+  userId:String,
   docketNumber: String,
   origin: String,
   destination: String,

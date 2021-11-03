@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
  
 const ConsignerSchema = new mongoose.Schema(
   {
+    userId:{type: String},
     consignerCode:{
       type: String,
       require: true,

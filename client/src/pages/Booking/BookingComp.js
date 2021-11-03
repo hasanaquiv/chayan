@@ -6,7 +6,7 @@ import BookingModel from "./BookingModel";
 import VolumetricModel from "./VolumetricModel";
 import { useSelector, useDispatch } from "react-redux";
 
-import { getAllConsigners } from "../../store/actions/consignerAction";
+import { getAllConsigners } from "../../store/actions/consignerAction"; 
 
 const BookingComp = (props) => {
   const dispatch = useDispatch();
@@ -24,7 +24,6 @@ const BookingComp = (props) => {
   }, [dispatch]);
 
   const data = consigners.response;
-  console.log(username)
 
   return (
     <>
@@ -33,7 +32,7 @@ const BookingComp = (props) => {
           <AvForm className="needs-validation" onValidSubmit={onSubmit}>
             <Row>
               {/* Docket Number */}
-              <Col md="3">
+              <Col md="2">
                 <div className="mb-3">
                   <AvField
                     name="docketNumber"
@@ -51,7 +50,7 @@ const BookingComp = (props) => {
                 </div>
               </Col>
               {/* Consigner Details */}
-              <Col md="3">
+              <Col md="2">
                 <div className="mb-3">
                   <AvField
                     className="form-control"
@@ -108,10 +107,10 @@ const BookingComp = (props) => {
                 </div>
               </Col>
               {/* Volumetric weight */}
-              <Col md="3">
+              <Col md="5">
                 <div className="mb-3">
                   <Row>
-                    <Col md={6}>
+                    <Col md={3}>
                       <AvField
                         name="box"
                         placeholder="Box"
@@ -125,6 +124,18 @@ const BookingComp = (props) => {
                     </Col>
                     <Col md={4}>
                       <AvField
+                        name="actualWeight"
+                        placeholder="Actual Weight"
+                        type="number"
+                        errorMessage="Enter Actual Weight"
+                        className="form-control"
+                        value=""
+                        validate={{ required: { value: true } }}
+                        id="validationCustom05"
+                      />
+                    </Col>
+                    <Col md={3}>
+                      <AvField
                         name="chargeWeight"
                         placeholder="Weight"
                         type="number"
@@ -136,7 +147,7 @@ const BookingComp = (props) => {
                         disabled
                       />
                     </Col>
-                    <Col md={2}>
+                    <Col md={1}>
                       <VolumetricModel
                         parentCallback={callback}
                         consignerVol={consignerVol}
@@ -273,7 +284,12 @@ const BookingComp = (props) => {
                     id="address"
                     placeholder="Remarks"
                     value=""
-                  />
+                  />                  
+                  <AvField
+                          name="userId"
+                          type="hidden"
+                          value={username._id}
+                        />
                 </div>
               </Col>
             </Row>

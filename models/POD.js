@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 const PodSchema = new mongoose.Schema(
   {
+    userId:{type: String},
     docketNumber: {
       type: String,
       require: true,

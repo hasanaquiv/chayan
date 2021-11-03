@@ -3,6 +3,7 @@ const finalDate = require("./Date");
 
 const MAnifestSchema = new mongoose.Schema(
   {
+    userId:{type: String},
     manifestNumber: {
       type: String,
       require: true,

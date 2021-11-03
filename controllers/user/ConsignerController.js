@@ -19,6 +19,7 @@ const index = async (req, res) => {
 
 const store = async (req, res) => {
   const {
+    userId,
     location,
     name,
     companyName,
@@ -48,6 +49,7 @@ const store = async (req, res) => {
     const consignerData = `CHC${Number(consignerInc) + Number(1)}`;
     const createStore = new Consigner({
       consignerCode: consignerData,
+      userId,
       location,
       name,
       companyName,

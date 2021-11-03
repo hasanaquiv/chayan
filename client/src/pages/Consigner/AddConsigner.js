@@ -15,6 +15,7 @@ const Consigner = () => {
   //for change tooltip display properly
 
   const [consigner, setConsigner] = useState({
+    userId:"",
     location: "",
     name: "",
     companyName: "",
@@ -37,6 +38,7 @@ const Consigner = () => {
   });
 
   const { loader, response } = useSelector((state) => state.consigners);
+  const { username } = useSelector((state) => state.users);
   const dispatch = useDispatch();
 
   const inputHandle = (event) => {
@@ -60,6 +62,7 @@ const Consigner = () => {
       toast.success(response.msg);
     }
     setConsigner({
+      userId:username._id,
       location: "",
       name: "",
       companyName: "",
@@ -80,7 +83,7 @@ const Consigner = () => {
       state: "",
       pincode: "",
     });
-  }, [response]);
+  }, [response, username._id]);
 
   return (
     <>
@@ -383,6 +386,11 @@ const Consigner = () => {
                           value={consigner.pincode}
                           validate={{ required: { value: true } }}
                           id="validationCustom05"
+                        />
+                        <AvField
+                          name="userId"
+                          type="hidden"
+                          value={username._id}
                         />
                       </div>
                     </Col>
