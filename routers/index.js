@@ -11,6 +11,7 @@ const PrintDocket = require("./user/PrintDocket");
 const Profile = require("./user/Profile");
 const Auth = require("../middlewares/Auth");
 const Billing = require("./user/Billing");
+const Mail = require("./user/Mail");
 
 
 
@@ -28,6 +29,7 @@ const Router = (app) => {
   app.use("/api", Profile); 
   app.use("/api", PrintDocket); 
   app.use("/api", Billing);  
+  app.use("/api", Mail);  
 };
 
 module.exports = Router;

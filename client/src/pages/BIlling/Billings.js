@@ -14,7 +14,7 @@ import Pagination from "../../components/Common/Pagination";
 
 const Billings = () => {
   const dispatch = useDispatch();
-  const { billings, loader } = useSelector((state) => state.billings);
+  const { billings, loader } = useSelector((state) => state.billings);  
   const [showPerPage, setShowPerPage] = useState(5);
   const [pagination, setPagination] = useState({
     start: 0,
@@ -23,7 +23,7 @@ const Billings = () => {
   const [search, setSearch] = useState();
 
   const onPaginationChange = (start, end) => {
-    setPagination({ start: start, end: end });
+    setPagination({ start: start, end: end }); 
   };
 
   const inputHandle = (event) => {
@@ -42,7 +42,7 @@ const Billings = () => {
     <>
       <div className="page-content">
         {/* Render Breadcrumbs */}
-        <Breadcrumbs title="Booking" breadcrumbItem="View All" />
+        <Breadcrumbs title="Booking" breadcrumbItem="View All" /> 
 
         <Row>
           <Col xs="12">
@@ -58,6 +58,7 @@ const Billings = () => {
                       <tr>
                         <th>#</th>
                         <th>Company Code</th>
+                        <th>Invoice No</th>
                         <th>Company Name</th>
                         <th>Number's Bill</th>
                         <th>Date</th>
@@ -66,13 +67,15 @@ const Billings = () => {
                     <tbody>
                       {!loader ? (
                         data !== undefined &&
-                        data.map((value, index) => {
+                        data.map((value, index,array) => {
                           return (
                             <tr key={index}>
                             <td>{index+1}</td>
+                            <td>CHL/{array.length - index}</td>
                               <td>
                                 <Link
-                                  to={`/billing/${value._id.consigner}`}
+                                  to={`/billing/c775e7b757ede630cd0aa1113b${value._id.consigner}${array.length - index }d102661ab38829ca52a6422ab782862f268646
+`}
                                   className="title"
                                 >
                                   {value._id.consigner}

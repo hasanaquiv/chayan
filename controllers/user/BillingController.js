@@ -4,7 +4,7 @@ const Booking = require("../../models/Booking");
 const index = async (req, res) => {
   try {
     // const response = await Billing.find().sort({ _id: -1 });
-    const response = await Billing.aggregate([
+    const response = await Billing.aggregate([ 
       {
         $group: {
           _id: {
@@ -13,10 +13,10 @@ const index = async (req, res) => {
             consigner: "$consigner",
           },
           count: { $sum: 1 },
-          total: { $sum: "$total" },
+          total: { $sum: "$total" }
         },
       },
-    ]).sort({ _id: -1 });
+    ]).sort({ _id: 1 }); 
     res.status(201).json({ msg: "fetch successfully", response });
   } catch (error) {
     res.status(501).json({ errors: error });
@@ -37,7 +37,7 @@ const store = async (req, res) => {
 
 const find = async (req, res) => {
   try {
-    const consigner = req.params.id;
+    const consigner = req.params.id; 
     const response = await Billing.find({ consigner });
     res.status(201).json({ msg: "fetch successfully", response });
   } catch (error) {

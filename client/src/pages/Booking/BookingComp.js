@@ -6,7 +6,7 @@ import BookingModel from "./BookingModel";
 import VolumetricModel from "./VolumetricModel";
 import { useSelector, useDispatch } from "react-redux";
 
-import { getAllConsigners } from "../../store/actions/consignerAction"; 
+import { getAllConsigners } from "../../store/actions/consignerAction";
 
 const BookingComp = (props) => {
   const dispatch = useDispatch();
@@ -194,19 +194,15 @@ const BookingComp = (props) => {
                 <div className="mb-3">
                   <AvField
                     className="form-control"
-                    type="select"
+                    type="text"
                     name="paymentMode"
                     placeholder="Payment Mode"
                     errorMessage=" Please Provide Payment Mode."
-                    value=""
+                    value="Billing"
                     validate={{ required: { value: true } }}
                     id="validationCustom03"
-                  >
-                    <option>Select Payment Mode</option>
-                    <option value="Cash">Cash</option>
-                    <option value="Billing">Billing</option>
-                    {/* <option value="To Pay">To Pay</option> */}
-                  </AvField>
+                    disabled
+                  ></AvField>
                 </div>
               </Col>
               {/* Branch */}
@@ -258,7 +254,7 @@ const BookingComp = (props) => {
                 </div>
               </Col>
               {/* Waybill Number */}
-              <Col md="6">
+              <Col md="3">
                 <div className="mb-3">
                   <AvField
                     name="waybill"
@@ -270,6 +266,27 @@ const BookingComp = (props) => {
                     validate={{ required: { value: false } }}
                     id="validationCustom05"
                   />
+                </div>
+              </Col>
+              {/* Waybill Number */}
+              <Col md="3">
+                <div className="mb-3">
+                  <AvField
+                    name="gstType"
+                    placeholder="Waybill Number"
+                    type="select"
+                    errorMessage=" Enter GST Type IGST/CGST."
+                    className="form-control"
+                    value=""
+                    validate={{ required: { value: false } }}
+                    id="validationCustom05"
+                  >
+                  <option>Select GST Type</option>
+                  <option value="IGST">IGST</option>
+                  <option value="CGST">
+                    CGST
+                  </option>
+                  </AvField>
                 </div>
               </Col>
             </Row>
@@ -284,12 +301,8 @@ const BookingComp = (props) => {
                     id="address"
                     placeholder="Remarks"
                     value=""
-                  />                  
-                  <AvField
-                          name="userId"
-                          type="hidden"
-                          value={username._id}
-                        />
+                  />
+                  <AvField name="userId" type="hidden" value={username._id} />
                 </div>
               </Col>
             </Row>

@@ -5,7 +5,7 @@ const {
   find,
   update,
   destroy,
-} = require("../../controllers/user/BookingController"); 
+} = require("../../controllers/user/BookingController");  
 
 const Router = express.Router();
 Router.get("/booking/:search", index);

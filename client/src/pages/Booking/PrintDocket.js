@@ -16,7 +16,7 @@ import PrintData from "./PrintData";
 const Booking = (props) => {
   // const { id } = useParams();
   //   const { consigners } = useSelector((state) => state.consigners);
-  const { prints, loader } = useSelector((state) => state.prints);
+  const { prints, loader } = useSelector((state) => state.prints); 
   const dispatch = useDispatch();
 
   let ids = props.location.pathname;

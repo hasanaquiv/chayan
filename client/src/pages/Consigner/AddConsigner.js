@@ -29,6 +29,7 @@ const Consigner = () => {
     fuelCharges: "",
     toPayCharges: "",
     customerType:"Billing",
+    gstAmount:"",
     volumetric: "",
     address1: "",
     address2: "",
@@ -76,6 +77,7 @@ const Consigner = () => {
       fuelCharges: "",
       toPayCharges: "",
       customerType:"Billing",
+      gstAmount:"",
       volumetric: "",
       address1: "",
       address2: "",
@@ -285,17 +287,15 @@ const Consigner = () => {
                     <Col md="2">
                       <div className="mb-3">
                         <AvField
-                          name="customerType"
-                          placeholder="Customer Type"
-                          type="text"
-                          errorMessage="Customer Type"
+                          name="gstAmount"
+                          placeholder="GST in Percentage"
+                          type="number"
+                          errorMessage="Please Add GST Amount"
                           className="form-control"
                           onChange={inputHandle}
-                          value={consigner.customerType}
-                          // value="Billing"
+                          value={consigner.gstAmount}
                           validate={{ required: { value: true } }}
                           id="validationCustom05"
-                          disabled
                         />
                       </div>
                     </Col>

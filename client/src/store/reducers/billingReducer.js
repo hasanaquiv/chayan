@@ -9,10 +9,10 @@ const billingReducer = createSlice({
     error: {},
     response: {},
     billings: {},
-    billing: {},
+    billing: {}, 
   },
   extraReducers: {
-      [getAllBillings.pending]:(state, action) => {
+      [getAllBillings.pending]:(state, action) => { 
           state.loader = true;
       },
       [getAllBillings.fulfilled]:(state, action) => {

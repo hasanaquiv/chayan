@@ -1,5 +1,7 @@
 const Booking = require("../../models/Booking");
 const Print = require("../../models/Print");
+const {MailSend} = require("./SendMail");
+
 
 
 const index = async (req, res) => {
@@ -7,7 +9,7 @@ const index = async (req, res) => {
     const response = await Booking.find({});
     res.status(201).json({ msg: "fetch successfully2", response });
   } catch (error) {
-    res.status(501).json({ errors: error });
+    res.status(501).json({ errors: error }); 
     console.log(error);
   }
 };
@@ -20,7 +22,7 @@ const store = async (req, res) => {
     }
     const createStore = new Print(req.body);
     const response = await createStore.save();
-    res.status(201).json({ msg: "Add successfully", response }); 
+    res.status(201).json({ msg: "Add successfully", response });
   } catch (error) {
     res.status(501).json({ errors: error });
     console.log(error);
@@ -54,7 +56,8 @@ const find = async (req, res) => {
       // { $limit: 1 }
     ]);
     const data = response[0]
-    res.status(201).json({ msg: "fetch successfully", data });
+    MailSend(data.consigneeDetails.email,data.docketNumber)
+    res.status(201).json({ msg: "fetch successfully", data });  
   } catch (error) {
     res.status(501).json({ errors: error });
     console.log(error);

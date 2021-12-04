@@ -12,7 +12,7 @@ const getAllBillings = createAsyncThunk("GetAllBillings", async () => {
   }
 });
 
-const getBilling = createAsyncThunk("getBilling", async (id) => {
+const getBilling = createAsyncThunk("getBilling", async (id) => { 
   try {
     const { data } = await axios.get(`/api/billing/${id}`);
     return data;

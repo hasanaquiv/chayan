@@ -8,6 +8,7 @@ const printAction = createAsyncThunk("Prints", async (prints) => {
       headers: { "Content-Type": "application/json" },
       data: prints,
     });
+    // console.log(data)
     return data;
   } catch (error) {
     return error;
@@ -15,7 +16,7 @@ const printAction = createAsyncThunk("Prints", async (prints) => {
 });
 
 const getPrintInfo = createAsyncThunk("GetPrintInfo", async (id) => {
-  const { data } = await axios.get(`/api/print-docket/${id}`);
+  const { data } = await axios.get(`/api/print-docket/${id}`); 
   return data;
 });
 

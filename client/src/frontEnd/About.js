@@ -54,45 +54,49 @@ const About = () => {
                     </div>
                     <div className="clear" />
                     <p className="m-b0">
-                      Chayan Enterprises Private limited, one of the largest
-                      Logistics companies in India. Directly from shipping your
-                      load across the globe, giving a-list Container Freight
-                      Station and Inland Container Depot offices, empowering
-                      complex ventures, giving great hardware to building or
-                      renting redid distribution centers and upgrading your
-                      stockpile chains, you can believe us with anything you
-                      need.
+                      We take this opportunity to introduce our Company “CHAYAN
+                      LOGISTICS PVT. LTD.” As logistics Masters have strategic
+                      partners in major Airports & Surface transport on pan
+                      India basis. We are specialized in surface transport &
+                      logistics, warehousing & airfreights. With reliability &
+                      timely services, the Company has grown progressively to
+                      become a major & reliable player in the sector. The
+                      company has invested tremendously in the latest and
+                      relevant technologies in regard to communications,
+                      tracking, transfers, transport, packaging & storage. With
+                      Chayan Logistics, goods are not only secured but clients
+                      are always in the know as pertains to the whereabouts of
+                      their goods every step of the way through our Internal
+                      Operation Standard which is benchmarked nationwide.
+                      Integrity , sense of urgency ,timeliness & caring attitude
+                      is the core value of our company. To be an authority &
+                      Market leader in offering reliable, cost-effective &
+                      secure nationwide logistics solutions where our customers
+                      will benefit from a personalized relationship is our basic
+                      vision. We are the provider of choice for innovative &
+                      quality logistical solutions We provide secure & spacious
+                      warehousing & logistics support. We are just a call away &
+                      our riders will ensure they collect and deliver the
+                      documents on time. We take utmost care of your cargo when
+                      loading & offloading by use of specialized lifting
+                      equipment in all our handlings. Our rates are very
+                      competitive in the market. They are negotiable based on
+                      cargo volume, there are no hidden charges on our rates.
+                      Our quotations are detailed & self-explanatory. We also
+                      offer door-to-door services & transit bonds from cargo
+                      origin to the clients’ offices or warehouses. We are the
+                      vendors of leading airlines i,e. M/s Spice jet Ltd. & M/s
+                      Indigo Airlines CHAYAN LOGISTICS PVT. LTD. is a Facility
+                      Management Company based in New Delhi (India). We proudly
+                      achieved the provision of more than 500 workers across its
+                      network. CHAYAN LOGISTICS PVT. LTD. is growing Company
+                      with branch offices in Haryana, Uttrakhand, Uttar Pradesh,
+                      Madhya Pradesh, Maharashtra, Bihar, Chhattisgarh, Andhra
+                      Pradesh, Telangana, Orissa and Jharkhand, with the vision
+                      to provide the world class facility services so as to grow
+                      India’s premier and the largest facility management
+                      company.
                     </p>
-                  </div>
-                  <div className="row">
-                    <div className="col-12">
-                      <ul className="list-angle-right">
-                        <li>
-                          Aim Of Making Chayan Nation Wide Logistics Company
-                        </li>
-                        <li>
-                          Currently Will Deal In Air Cargo, Surface Cargo And
-                          Warehousing
-                        </li>
-                        <li>
-                          Hiring Skilled &amp; Experience Manpower In Field Of
-                          Logistics
-                        </li>
-                        <li>
-                          Will Add Some Big Names In Logistics Industry In
-                          Coming Days
-                        </li>
-                        {/* <li>
-                          Aayam Group Providing Services To Companies Like
-                          Indigo, Spicejet,namco Industries, Etc.
-                        </li> */}
-                        <li>
-                          Currently Having Strength Of Around 500+ Employees All
-                          Over India
-                        </li>
-                        <li>Head Office Situated In New Delhi</li>
-                      </ul>
-                    </div>
                   </div>
                   <div className="row">
                     <div className="col-lg-6 col-md-6">
@@ -105,7 +109,7 @@ const About = () => {
                         </div>
                         <div className="icon-content p-l40">
                           <h4 className="dez-tilte m-b0">
-                            Import Export Goods
+                          Inbound and Outbound Goods
                           </h4>
                         </div>
                       </div>

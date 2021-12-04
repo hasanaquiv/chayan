@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { CardBody, Row, Col, Card, Table, Button } from "reactstrap";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import converter from "number-to-words";
 
 //Import Breadcrumb
 import Breadcrumbs from "../../components/Common/Breadcrumb";
@@ -13,10 +14,11 @@ import Loader from "../../components/HorizontalLayout/Loader";
 
 const Billing = (props) => {
   let ids = props.location.pathname;
-  const id = ids.substr(9);
+  const id = ids.substr(35,4);
+  const invoiceNo = ids.substr(39,1);
 
   const dispatch = useDispatch();
-  const { billing, loader } = useSelector((state) => state.billings);
+  const { billing, loader } = useSelector((state) => state.billings); 
 
   useEffect(() => {
     dispatch(getBilling(id));
@@ -39,22 +41,19 @@ const Billing = (props) => {
                       <strong>Chayan Logistics Pvt. Ltd.</strong>
                     </h6>
                     <h6>Khasra Number 647, A Block, Opposite Chaudhary Farm</h6>
-                    <h6>Rangpuri Extension, New Delhi 110037</h6>                    
+                    <h6>Rangpuri Extension, New Delhi 110037</h6>
                     <h6>GST - 07AAJCC7802J1ZI</h6>
                   </h4>
                   <div className="mb-4">
                     <img
-                      src={
-                        require("../../asset/images/logo.png")
-                          .default
-                      }
+                      src={require("../../asset/images/logo.png").default}
                       alt="icon"
                       width="180px"
                     />
                   </div>
                 </div>
                 <hr />
-                <BillingTop id={id} data={data} />
+                <BillingTop id={id} data={data} invoiceNo={invoiceNo} />
                 <div className="py-2 mt-3">
                   <h3 className="font-size-15 fw-bold">Order summary</h3>
                 </div>
@@ -90,7 +89,12 @@ const Billing = (props) => {
                               <td>{Math.ceil(value.chargeWeight)}</td>
                               <td>{Math.ceil(value.freightCharge)}</td>
                               <td>{Math.ceil(value.otherCharge)}</td>
-                              <td>{Math.ceil(value.gst)}</td>
+                              <td>
+                                {value.gstType === "IGST"
+                                  ? Math.ceil(value.gst) + "  IGST"
+                                  : Math.ceil(value.gst) / 2 + " CGST /" + Math.ceil(value.gst) / 2 + " SGST"
+                                }
+                              </td>
                               <td>{Math.ceil(value.total)}.00</td>
                             </tr>
                           );
@@ -104,7 +108,7 @@ const Billing = (props) => {
                         <td colSpan="10">
                           <strong>Total</strong>
                         </td>
-                        <td colSpan="10">
+                        <td colSpan="5">
                           {data !== undefined &&
                             Math.ceil(
                               data
@@ -113,6 +117,16 @@ const Billing = (props) => {
                             )}
                           .00
                         </td>
+
+                        {/* <td colSpan="5">
+                          {data !== undefined &&
+                            converter.toWords(Math.ceil(
+                              data
+                                .map((item) => item.total)
+                                .reduce((prev, next) => prev + next)
+                            ))
+                            }
+                        </td> */}
                       </tr>
                     </tfoot>
                   </Table>
@@ -122,7 +136,7 @@ const Billing = (props) => {
                     <Button
                       to="#"
                       className="btn btn-success waves-effect waves-light"
-                      onClick={() =>{
+                      onClick={() => {
                         window.print();
                       }}
                     >

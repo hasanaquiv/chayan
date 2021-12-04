@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const finalDate = require("./Date");
 const BookingSchema = new mongoose.Schema(
   {
-    userId:{type: String},
+    userId: { type: String },
     docketNumber: {
       type: String,
       require: true,
@@ -23,11 +23,11 @@ const BookingSchema = new mongoose.Schema(
       type: String,
       require: true,
     },
-    box:{      
+    box: {
       type: Number,
       require: true,
     },
-    actualWeight:{
+    actualWeight: {
       type: Number,
       require: true,
     },
@@ -44,6 +44,10 @@ const BookingSchema = new mongoose.Schema(
       require: true,
     },
     waybill: {
+      type: String,
+      require: true,
+    },
+    gstType: {
       type: String,
       require: true,
     },

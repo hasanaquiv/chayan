@@ -20,10 +20,10 @@ const Footer = () => {
                     />
                   </div>
                   <p className="m-t20 m-b15">
-                    <strong>Chayan Enterprises Private limited</strong> , one of
-                    the largest Logistics companies in India. Directly from
-                    shipping your load across the globe, giving a-list Container
-                    Freight Station and Inland Container Depot offices
+                    We take
+                    this opportunity to introduce our Company “<strong>CHAYAN LOGISTICS
+                    PVT. LTD.</strong>” As logistics Masters have strategic partners in
+                    major Airports & Surface transport on pan India basis.
                   </p>
                   <ul className="dez-social-icon dez-border">
                     <li>
@@ -70,11 +70,11 @@ const Footer = () => {
                     </li>
                     <li>
                       <i className="fa fa-phone" />
-                      <strong>Phone</strong>+91 11-41678277
+                      <strong>Phone</strong>+91 7982979198
                     </li>
                     <li>
                       <i className="fa fa-envelope" />
-                      <strong>Mail</strong>info@hchayanlogistics.com
+                      <strong>Mail</strong>info@chayanlogistics.com
                     </li>
                   </ul>
                 </div>

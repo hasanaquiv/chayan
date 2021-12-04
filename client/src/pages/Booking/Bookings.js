@@ -15,7 +15,7 @@ import Pagination from "../../components/Common/Pagination";
 const Bookings = () => {
   const dispatch = useDispatch();
   const { bookings, loader } = useSelector((state) => state.bookings);
-  const [showPerPage, setShowPerPage] = useState(5);
+  const [showPerPage, setShowPerPage] = useState(10);
   const [pagination, setPagination] = useState({
     start: 0,
     end: showPerPage,

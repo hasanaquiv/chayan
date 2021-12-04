@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const printSchema = new mongoose.Schema({
+const printSchema = new mongoose.Schema({ 
   userId:String,
   docketNumber: String,
   origin: String,
@@ -11,8 +11,10 @@ const printSchema = new mongoose.Schema({
   actualWeight: String,
   chargeWeight: String,
   freightCharge:Number,
-  otherCharge:Number,
+  otherCharge:Number, 
   gst:String,
+  gstAmount:String,
+  gstType:String,
   total: Number,
 });
 

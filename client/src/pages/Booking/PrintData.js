@@ -37,6 +37,7 @@ const PrintData = (props) => {
     paymentMode,
     remarks,
     handling,
+    gstType,
     consignerDetails,
     consigneeDetails,
   } = props.data;
@@ -50,7 +51,7 @@ const PrintData = (props) => {
     consignerDetails.fuelCharges +
     consignerDetails.toPayCharges;
 
-  const totalGst = (charge * 18) / 100;
+  const totalGst = (charge * consignerDetails.gstAmount) / 100;
   const total = totalGst + charge;
 
   const month = new Date().getMonth();
@@ -59,7 +60,7 @@ const PrintData = (props) => {
     id: props.id,
     docketNumber,
     consigner,
-    consignerName: consignerDetails.companyName,
+    consignerName: consignerDetails.companyName, 
     origin,
     destination,
     actualWeight,
@@ -68,6 +69,8 @@ const PrintData = (props) => {
     otherCharge: charge,
     month,
     gst: totalGst,
+    gstAmount:consignerDetails.gstAmount,
+    gstType,
     total,
   };
 
@@ -332,7 +335,7 @@ const PrintData = (props) => {
                 onConfirm={() => {
                   setConfirm(false);
                   setSuccess(true);
-                  dispatch(printAction(data));
+                  dispatch(printAction(data)); 
                 }}
                 onCancel={() => {
                   setConfirm(false);

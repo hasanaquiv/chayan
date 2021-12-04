@@ -48,7 +48,7 @@ const NavAdmin = (props) => {
                 }}
                 to="dashboard"
               >
-                Consigner
+                Consignor
               </Link>
               <div className={classname("dropdown-menu", { show: dashboard })}>
                 <Link to="/consigner-add" className="dropdown-item">

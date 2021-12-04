@@ -53,6 +53,9 @@ const ConsignerSchema = new mongoose.Schema(
     customerType:{
       type: String
     },
+    gstAmount:{
+      type:String
+    },
     volumetric:{
       type: Number,
       require: true,

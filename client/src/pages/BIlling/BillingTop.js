@@ -9,7 +9,7 @@ const BillingTop = (props) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getConsignerCode(props.id));
+    dispatch(getConsignerCode(props.id)); 
   }, [dispatch, props.id]);
 
   const date = new Date();
@@ -35,11 +35,11 @@ const BillingTop = (props) => {
           <address>
             <strong>Billed To:</strong>
             <br />
-            {consignerCode.consignerCode}
+            {consignerCode.companyName} ({consignerCode.consignerCode})
             <br />
-            {consignerCode.address1}
+            {consignerCode.gstNumber}
             <br />
-            {consignerCode.address2}
+            {consignerCode.address1} {consignerCode.address2}
             <br />
             {consignerCode.city}, {consignerCode.state}, {consignerCode.pincode}
           </address>
@@ -48,7 +48,7 @@ const BillingTop = (props) => {
           <address>
             <strong>Invoice Number</strong>
             <br />
-            Kenny Rigdon
+            CHL{props.invoiceNo}
             <br />
             <strong>Invoice Month</strong>
             <br />

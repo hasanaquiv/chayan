@@ -42,7 +42,7 @@ const NavSubAdmin = (props) => {
 
           <li className="nav-item dropdown">
             <Link className="nav-link arrow-none" to="/consigners">
-              Consigners
+              Consignor
             </Link>
           </li>
 

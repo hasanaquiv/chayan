@@ -7,7 +7,7 @@ const PodSchema = new mongoose.Schema(
       type: String,
       require: true,
     },
-    receiverName: {
+    receiverName: { 
       type: String,
       require: true,
     },

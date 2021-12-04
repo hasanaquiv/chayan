@@ -6,18 +6,18 @@ const index = async (req, res) => {
     res.status(201).json({ msg: "fetch successfully", response });
   } catch (error) {
     res.status(501).json({ errors: error });
-    console.log(error);
+    console.log(error); 
   }
 };
 
 const store = async (req, res) => {
   const { text, key, status, order } = req.body;
   try {    
-    const findId = await Test.findOne().sort({ _id: -1 })
-    const oderValue = findId.order
-    const oderInc = oderValue.substr(6)
-    const orderData = `chlko-${Number(oderInc) + Number(1)}`;
-    const createStore = new Test({ text, key, status, order:orderData });
+    // const findId = await Test.findOne().sort({ _id: -1 })
+    // const oderValue = findId.order
+    // const oderInc = oderValue.substr(6)
+    // const orderData = `chlko-${Number(oderInc) + Number(1)}`;
+    const createStore = new Test(req.body);
     const response = await createStore.save();
     res.status(201).json({ msg: "Add successfully", response });
   } catch (error) {

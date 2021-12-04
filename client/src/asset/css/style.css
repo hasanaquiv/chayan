@@ -8236,7 +8236,7 @@ button.scroltop {
 .trans-footer .newsletter button {
     height: 50px;
     padding-left: 20px;
-    ` padding-right: 20px;
+    padding-right: 20px;
 }
 .trans-footer .section-head {
     margin-bottom: 30px;
@@ -8382,7 +8382,7 @@ footer.footer-white .footer-bottom a {
 .text-center.section-head p {
     margin-left: auto;
     margin-right: auto;
-    max-width: 700px;
+    max-width: 1100px;
 }
 .text-white {
     color: #FFF;

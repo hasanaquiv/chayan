@@ -30,7 +30,7 @@ const Header = () => {
                   </li>
                   <li>
                     <i className="fa fa-phone" />
-                    <span>+91 11-41678277</span>
+                    <span>+91 7982979198</span>
                   </li>
                 </ul>
               </div>
@@ -83,15 +83,11 @@ const Header = () => {
                   </li>
                   <li>
                     {" "}
-                    <Link to="javascript;">
-                      Services
-                      <i className="fa fa-chevron-down" />
-                    </Link>
-                    <ul className="sub-menu">
-                      <li>
-                        <Link to="/logistics">Logistics</Link>
-                      </li>
-                    </ul>
+                    <Link to="/logistics">Logistics</Link>
+                  </li>
+                  <li>
+                    {" "}
+                    <Link to="/career">Career</Link>
                   </li>
                   <li>
                     {" "}
