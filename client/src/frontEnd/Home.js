@@ -23,7 +23,7 @@ const Home = () => {
           {/* <Slider /> */}
           <AwesomeSlider animation="cubeAnimation">
             <div data-src={require("../asset/images/main-slider/slide1.jpg")
-                          .default} />
+                          .default} ><h1>Alimentos Finos Mexicanos</h1></div>
             <div data-src={require("../asset/images/main-slider/slide2.jpg")
                           .default} />
           </AwesomeSlider>
