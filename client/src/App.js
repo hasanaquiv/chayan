@@ -4,6 +4,7 @@ import Test from "./pages/test/Test";
 
 import DocketTrack from "./frontEnd/DocketTrack";
 import Contact from "./frontEnd/Contact";
+import Career from "./frontEnd/Career";
 import About from "./frontEnd/About";
 import Home from "./frontEnd/Home"; 
 import Logistics from "./frontEnd/Logistics"; 
@@ -53,6 +54,7 @@ const App = (props) => {
           <Route exact path="/" component={Home}/>
           <Route exact path="/about" component={About}/>
           <Route exact path="/contact" component={Contact}/>
+          <Route exact path="/career" component={Career}/>
           <Route exact path="/docket-track" component={DocketTrack}/>
           <Route exact path="/logistics" component={Logistics}/>
           <Route exact path="/test" component={Test}/>
