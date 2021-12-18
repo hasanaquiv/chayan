@@ -16,7 +16,7 @@ const manifestAction = createAsyncThunk("manifest", async (manifest) => {
 
 const getAllManifests = createAsyncThunk("getAllManifests", async (search) => {
   try {
-    const { data } = await axios.get(`/api/manifests/${search}`);
+    const { data } = await axios.get(`/api/manifests/${search}`); 
     return data;
   } catch (error) {
     return error;

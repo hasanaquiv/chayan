@@ -16,6 +16,8 @@ import { Redirect } from "react-router-dom";
 // Dashboard
 import Dashboard from "../pages/Dashboard/index";
 import Booking from "../pages/Booking/Booking";
+import BookingCash from "../pages/Booking/BookingCash";
+import FormAdvanced from "../pages/Forms/FormAdvanced";
 import Bookings from "../pages/Booking/Bookings";
 import BookingUpdate from "../pages/Booking/BookingUpdate";
 import PrintDocket from "../pages/Booking/PrintDocket";
@@ -31,6 +33,9 @@ import AddTracking from "../pages/Manifest/AddTracking";
 import UpdateTracking from "../pages/Manifest/UpdateTracking";
 import PODS from "../pages/Manifest/PODS";
 import Pod from "../pages/POD/Pod";
+import Odrs from "../pages/Manifest/Odrs";
+import Odr from "../pages/POD/Odr";
+import AddOdr from "../pages/POD/AddOdr";
 import AddPod from "../pages/POD/AddPod";
 import Billings from "../pages/BIlling/Billings";
 import Billing from "../pages/BIlling/Billing";
@@ -54,6 +59,8 @@ import UserProfile from "../pages/Authentication/user-profile";
 const userRoutes = [
   { path: "/dashboard", component: Dashboard }, 
   { path: "/booking-new", component: Booking },
+  { path: "/booking-cash", component: BookingCash },
+  { path: "/form", component: FormAdvanced },
   { path: "/consigner-add", component: AddConsigner },
   { path: "/consigner/:id", component: Consigner },
   { path: "/bookings", component: Bookings },
@@ -71,6 +78,9 @@ const userRoutes = [
   { path: "/pods", component: PODS },
   { path: "/pod/:id", component: Pod },
   { path: "/add-pod", component: AddPod },
+  { path: "/odrs", component: Odrs },
+  { path: "/odr/:id", component: Odr },
+  { path: "/add-odr", component: AddOdr },
   { path: "/billings", component: Billings, }, 
   { path: "/billing/:id", component: Billing, }, 
   { path: "/consignee-update/:id", component: ConsigneeUpdate, }, 

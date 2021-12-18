@@ -34,6 +34,10 @@ const NavSubAdmin = (props) => {
                 Add new
               </Link>
 
+              <Link to="/booking-cash" className="dropdown-item">
+                Booking Cash
+              </Link>
+
               <Link to="/bookings" className="dropdown-item">
                 View All
               </Link>

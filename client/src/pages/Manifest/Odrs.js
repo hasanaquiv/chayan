@@ -2,7 +2,7 @@ import { useState,useEffect } from "react";
 
 import { Link } from "react-router-dom";
 import { Row, Col, Button, Input, Label, Card, Table } from "reactstrap"; 
-import { getAllManifests } from "../../store/actions/manifestAction";
+import { getAllOdrs } from "../../store/actions/odrAction";
 import { useSelector, useDispatch } from "react-redux";
 
 //Import Breadcrumb
@@ -16,7 +16,7 @@ import Pagination from "../../components/Common/Pagination";
 
 const Manifests = () => {
   const dispatch = useDispatch();
-  const { manifests, loader } = useSelector((state) => state.manifests);
+  const { odrs, loader } = useSelector((state) => state.odrs);
   const [showPerPage, setShowPerPage] = useState(5);  
   const [pagination, setPagination] = useState({
     start: 0,
@@ -33,10 +33,12 @@ const Manifests = () => {
   };
 
   useEffect(() => {
-    dispatch(getAllManifests(search));
+    dispatch(getAllOdrs(search));
   }, [dispatch, search]);
 
-  const data = manifests.response;
+  const data = odrs.response;
+
+  console.log(data)
 
   return (
     <>
@@ -57,9 +59,9 @@ const Manifests = () => {
                     <thead>
                       <tr>
                         <th>#</th>
-                        <th>Manifest No.</th>
-                        <th>Manifest Origin</th>
-                        <th>Manifest Destination</th>
+                        <th>ODR No.</th>
+                        <th>Delivery Boy Name</th>
+                        <th>Delivery Area</th>
                         <th>Date</th>
                       </tr>
                     </thead>
@@ -69,9 +71,9 @@ const Manifests = () => {
                           .slice(pagination.start, pagination.end)
                           .map((value, index) => {
                           const {
-                            manifestNumber,
-                            manifestOrigin,
-                            manifestDestination,
+                            odrNumber,
+                            deliveryBoy,
+                            odrDestination,
                             date
                           } = value;
                           return (
@@ -81,12 +83,12 @@ const Manifests = () => {
                                 <Label htmlFor="chk19" className="toggle" />
                               </td>
                               <td>
-                                <Link to={`manifest/${value._id}`} className="title">
-                                  {manifestNumber}
+                                <Link to={`odr/${value._id}`} className="title">
+                                  {odrNumber}
                                 </Link>
                               </td>
-                              <td>{manifestOrigin}</td>
-                              <td>{manifestDestination}</td>
+                              <td>{deliveryBoy}</td>
+                              <td>{odrDestination}</td>
                               <td>{date}</td>
                             </tr>
                           );

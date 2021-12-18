@@ -2,17 +2,19 @@ import { useState, useEffect } from "react";
 import { Row, Col, Card, CardBody, Button } from "reactstrap";
 import { AvForm, AvField } from "availity-reactstrap-validation";
 
-import BookingModel from "./BookingModel";
+import BookingModel from "./BookingModelCash";
 import VolumetricModel from "./VolumetricModel";
 import { useSelector, useDispatch } from "react-redux";
 
 import { getAllConsigners } from "../../store/actions/consignerAction";
+import { getAllConsignees } from "../../store/actions/consigneeAction";
 
 const BookingComp = (props) => {
   const dispatch = useDispatch();
   const [consigner, setConsigner] = useState();
   const [consignerVol, setConsignerVol] = useState("CHC1");
   const { consigners } = useSelector((state) => state.consigners);
+  const { consignees } = useSelector((state) => state.consignees); 
   const { username } = useSelector((state) => state.users);
 
   // calling props ================================
@@ -21,9 +23,13 @@ const BookingComp = (props) => {
 
   useEffect(() => {
     dispatch(getAllConsigners());
+    dispatch(getAllConsignees());
   }, [dispatch]);
 
   const data = consigners.response;
+  const data2 = consignees.response;
+
+  // console.log(data, data2);
 
   return (
     <>
@@ -50,14 +56,16 @@ const BookingComp = (props) => {
                 </div>
               </Col>
               {/* Consigner Details */}
-              <Col md="2">
+              <Col md="3">
                 <div className="mb-3">
-                  <AvField
+                  <Row>
+                    <Col md={9}>
+                    <AvField
                     className="form-control"
                     name="consigner"
                     list="datalistOptions"
                     placeholder="Consignor"
-                    errorMessage=" Please provide Shipper Code."
+                    errorMessage=" Please provide Consignor Code."
                     onChange={(event) => {
                       const { value } = event.target;
                       const userExists = data.some(
@@ -81,24 +89,38 @@ const BookingComp = (props) => {
                         );
                       })}
                   </datalist>
+                    </Col>
+                    <Col md={1}>
+                      <BookingModel parentCallback={consigneeCallback} />
+                    </Col>
+                  </Row>
                 </div>
               </Col>
               {/* Consignee Details */}
-              <Col md="3">
+              <Col md="2">
                 <div className="mb-3">
                   <Row>
                     <Col md={9}>
-                      <AvField
-                        name="consignee"
-                        placeholder="Consignee Details"
-                        type="text"
-                        errorMessage="Please provide Consignee Details."
-                        className="form-control"
-                        value={consigneeValue}
-                        validate={{ required: { value: true } }}
-                        id="validationCustom04"
-                        disabled
-                      />
+                    <AvField
+                    className="form-control"
+                    name="consignee"
+                    list="consigneesOptions"
+                    placeholder="Consignee"
+                    errorMessage=" Please provide Consignor Code."
+                    value={consigneeValue}
+                    validate={{ required: { value: true } }}
+                    id="validationCustom03"
+                  />
+                  <datalist id="consigneesOptions" value={consignees}>
+                    {data2 !== undefined &&
+                      data2.map((value, index) => {
+                        return (
+                          <option value={value.consigneeCode} key={index}>
+                            {value.companyName}
+                          </option>
+                        );
+                      })}
+                  </datalist>
                     </Col>
                     <Col md={1}>
                       <BookingModel parentCallback={consigneeCallback} />
@@ -198,7 +220,7 @@ const BookingComp = (props) => {
                     name="paymentMode"
                     placeholder="Payment Mode"
                     errorMessage=" Please Provide Payment Mode."
-                    value="Billing"
+                    value="Cash"
                     validate={{ required: { value: true } }}
                     id="validationCustom03"
                     disabled

@@ -87,6 +87,8 @@ const PrintData = (props) => {
     }
   }, [response]);
 
+  console.log(props.data)
+
   return (
     <>
       <Card>
@@ -250,7 +252,7 @@ const PrintData = (props) => {
                   Destination : {destination}
                 </Col>
                 <Col sm={12}>
-                  {consignerDetails.customerType !== "Billing" ? (
+                  {paymentMode !== "Billing" ? (
                     <Row>
                       <Col sm={6} style={style.borderReactRight}>
                         <div>Charges</div>

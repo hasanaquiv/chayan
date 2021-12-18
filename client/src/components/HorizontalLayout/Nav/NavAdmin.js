@@ -33,6 +33,9 @@ const NavAdmin = (props) => {
                 <Link to="/booking-new" className="dropdown-item">
                   Add new
                 </Link>
+                <Link to="/booking-cash" className="dropdown-item">
+                Booking Cash
+              </Link>
                 <Link to="/bookings" className="dropdown-item">
                   View All
                 </Link>
@@ -146,6 +149,9 @@ const NavAdmin = (props) => {
               <div className={classname("dropdown-menu", { show: dashboard })}>
                 <Link to="/add-pod" className="dropdown-item">
                   Add POD
+                </Link>
+                <Link to="/add-odr" className="dropdown-item">
+                  Add ODR
                 </Link>
                 <Link to="/billings" className="dropdown-item">
                   All Billings
